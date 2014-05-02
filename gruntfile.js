@@ -7,9 +7,13 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        custom: [
+        libraries : [
+          "js/libs/jquery.zclip.js"
         ],
-        src: [ '<%= concat.dist.custom %>' ],
+        custom: [
+          "js/copypasta.js"
+        ],
+        src: [ '<%= concat.dist.libraries %>', '<%= concat.dist.custom %>' ],
         dest: 'js/story.dev.js'
       }
     },
