@@ -1,0 +1,21 @@
+#nodejs
+node_modules
+
+# OSX
+.DS_Store
+node_modules/
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# VIM
+.*.sw[a-z]
+*.un~
+Session.vim
+
+#sublime
+.sublime-grunt.cache
