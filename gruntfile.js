@@ -8,10 +8,9 @@ module.exports = function(grunt) {
       },
       dist: {
         custom: [
-          "js/social-masonry.js"
         ],
         src: [ '<%= concat.dist.custom %>' ],
-        dest: 'js/social.dev.js'
+        dest: 'js/story.dev.js'
       }
     },
     uglify: {
@@ -20,7 +19,7 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'js/social.js': ['<%= concat.dist.dest %>']
+          'js/story.js': ['<%= concat.dist.dest %>']
         }
       }
     },
@@ -71,11 +70,11 @@ module.exports = function(grunt) {
         tasks: ['default']
       },
       css: {
-        files: ['*.less'],
+        files: ['*.less','less/*.less'],
         tasks: ['less']
       }
     }
-  
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-less');
@@ -85,7 +84,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  
+
 
   grunt.registerTask('default', ['less', 'jshint', 'concat', 'uglify', 'notify']);
   grunt.registerTask( 'js', [ 'jshint', 'concat', 'notify' ]);

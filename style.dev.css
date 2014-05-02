@@ -1,0 +1,20 @@
+/*!
+Theme Name: Story
+Theme URI: washington.edu
+Description: the Story Central theme
+Author: UW Web Team
+Author URI: http://uw.edu/
+Template: uw-2013
+Version: 0.1
+*/
+.widget .widget-title {
+  background: url('/wp-content/themes/uw-2013/img/widgets/headline-background.png') no-repeat -16px -148px transparent;
+  padding: 32px 0 5px;
+  margin-top: 0;
+}
+.widget .widget-title:after {
+  background: url();
+}
+.black-studio-tinymce-widget h3 {
+  display: none;
+}
