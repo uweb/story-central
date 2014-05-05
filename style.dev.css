@@ -15,6 +15,26 @@ Version: 0.1
 .widget .widget-title:after {
   background: url();
 }
+.widget.uw_story_social div.facebook-widget div.social-head img {
+  height: 32px;
+  width: 32px;
+  margin-right: 8px;
+}
+.widget.uw_story_social div.facebook-widget div.social-head span {
+  color: #3b5998;
+  font-size: 12px;
+  font-weight: bold;
+}
+.widget.uw_story_social div.twitter-widget div.social-head img {
+  height: 24px;
+  width: 24px;
+  margin-right: 5px;
+}
+.widget.uw_story_social div.twitter-widget div.social-head span {
+  color: #39275b;
+  font-size: 14x;
+  font-weight: bold;
+}
 .black-studio-tinymce-widget h3 {
   display: none;
 }
