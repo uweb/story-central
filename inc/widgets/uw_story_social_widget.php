@@ -6,7 +6,7 @@ class UW_Story_Social_Widget extends WP_Widget {
             'uw_story_social_widget',
             'UW Story Social Widget',
            array(
-                'classname' => 'uw_story_social_widget', 
+                'classname' => 'uw_story_social_widget',
                 'description' => __("Social widget for Story Central")
             )
         );
