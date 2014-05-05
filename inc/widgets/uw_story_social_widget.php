@@ -18,8 +18,8 @@ class UW_Story_Social_Widget extends WP_Widget {
         ?>
         <div class='widget uw_story_social'>
             <h3 class='widget-title'><?= $type ?></h3>
-            <div class='<?= strtolower($type) ?>-widget social-widget'>
-                <div>
+            <div class='<?= strtolower($type) ?>-widget'>
+                <div class='social-head'>
                     <img src='<?= get_stylesheet_directory_uri() ?>/img/social.jpg'>
                     <span>University of Washington</span>
                 </div>
