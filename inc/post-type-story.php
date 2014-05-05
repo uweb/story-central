@@ -44,7 +44,6 @@ class Story
 		  'menu_name'         => 'Pillar',
     );
 
-
     register_post_type( self::POST_TYPE,
         array(
           'labels' => $labels,
@@ -60,12 +59,15 @@ class Story
 
     register_taxonomy( self::TAXONOMY, self::POST_TYPE, array(
       'labels' => $pillar_labels,
+      'show_ui' => false,
 			'rewrite' => array( 'slug' => 'pillar' ),
 			'hierarchical' => true,
 		));
 
   }
 
+
+  // NOT BEING USED AT THE MOMENT FROM HERE DOWN
 
   function add_meta_boxes( $post )
   {
