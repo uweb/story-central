@@ -56,6 +56,7 @@ class UW_Story_Social_Widget extends WP_Widget {
         <?php } ?>
         </select>
         <?php
+        wp_enqueue_media();
         wp_editor($text, $this->get_field_name('text'));
     }
 }
