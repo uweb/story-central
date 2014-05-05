@@ -27,7 +27,7 @@ class UW_Story_Social_Widget extends WP_Widget {
                 </div>
                 <p><?= $text ?></p>
                 <?php
-                if (has_post_thumbnail($postID)) {
+                if (($type == 'Facebook') && (has_post_thumbnail($postID))) {
                     get_the_post_thumbnail($postID);
                 }
                 ?>
