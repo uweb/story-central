@@ -55,8 +55,8 @@ class UW_Story_Social_Widget extends WP_Widget {
             <option value='<?= $social ?>' <?php if ($type == $social){ ?> selected <?php } ?>><?= $social ?></option>
         <?php } ?>
         </select>
-        <input type='text' name='<?= $this->get_field_name('text') ?>' value='<?= $text ?>' />
         <?php
+        wp_editor($text, $this->get_field_name('text'));
     }
 }
 ?>
