@@ -17,8 +17,14 @@ class UW_Story_Social_Widget extends WP_Widget {
         $text = $instance['text'];
         ?>
         <div class='widget uw_story_social'>
-            <h3><?= $type ?></h3>
-            <p><?= $text ?></p>
+            <h3 class='widget-title'><?= $type ?></h3>
+            <div class='<?= strtolower($type) ?>-widget social-widget'>
+                <div>
+                    <img src='<?= get_stylesheet_directory_uri() ?>/img/social.jpg'>
+                    <span>University of Washington</span>
+                </div>
+                <p><?= $text ?></p>
+            </div>
         </div>
         <?php
     }
