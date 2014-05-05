@@ -43,10 +43,9 @@ class UW_Story_Gallery
       $image = get_attached_file($id);
 
       if ( file_exists($image) ) {
-        echo $image . "\n";
-        $zip->addFile( $image );
+        $zip->addFile( $image, basename($image));
       } else {
-        die("File $filepath doesnt exit");
+        // die("File $filepath doesnt exit");
       }
 
     }
@@ -56,7 +55,12 @@ class UW_Story_Gallery
    header('Content-Type: application/zip');
    header('Content-disposition: attachment; filename=' . $name );
    header('Content-Length: ' . filesize($path) );
+
+  //TODO: alternate method to make zip file work?
+    ob_clean();
+    flush();
    readfile( $path );
+
    wp_die();
 
   }
