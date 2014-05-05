@@ -17,7 +17,7 @@ class UW_Story_Social_Widget extends WP_Widget {
         $text = $instance['text'];
         ?>
         <div class='widget uw_story_social'>
-            <h3><?= $type ?></h3>
+            <h3 class='widget-title'><?= $type ?></h3>
             <p><?= $text ?></p>
         </div>
         <?php
