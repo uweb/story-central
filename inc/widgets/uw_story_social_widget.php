@@ -13,6 +13,8 @@ class UW_Story_Social_Widget extends WP_Widget {
     }
 
     public function widget($args, $instance){
+        global $post;
+        $postID = $post->ID;
         $type = $instance['type'];
         $text = $instance['text'];
         ?>
@@ -24,6 +26,11 @@ class UW_Story_Social_Widget extends WP_Widget {
                     <span>University of Washington</span>
                 </div>
                 <p><?= $text ?></p>
+                <?php
+                if (($type == 'Facebook') && (has_post_thumbnail($postID))) {
+                    get_the_post_thumbnail($postID);
+                }
+                ?>
             </div>
         </div>
         <?php
