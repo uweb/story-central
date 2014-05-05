@@ -8,11 +8,11 @@ class Story
   function Story()
   {
     add_action( 'init', array( $this, 'init' ) );
+    add_action( 'widgets_init', array( $this, 'deregister_widgets' ) );
   }
 
   function init()
   {
-
 
     $labels = array(
       'name' => 'Stories',
@@ -65,6 +65,72 @@ class Story
 		));
 
   }
+
+  function deregister_widgets()
+  {
+
+      //todo: only unregister if on the story edit page?
+      foreach ( $this->get_widgets() as $widget )
+      {
+        unregister_widget( $widget );
+      }
+
+  }
+
+  function get_widgets()
+  {
+      return array(
+        //default WP
+        'WP_Widget_Pages',
+        'WP_Widget_Calendar',
+        'WP_Widget_Archives',
+        'WP_Widget_Links',
+        'WP_Widget_Meta',
+        'WP_Widget_Search',
+        'WP_Widget_Text',
+        'WP_Widget_Categories',
+        'WP_Widget_Recent_Posts',
+        'WP_Widget_Recent_Comments',
+        'WP_Widget_RSS',
+        'WP_Widget_Tag_Cloud',
+        'WP_Nav_Menu_Widget',
+        //Custom UW
+        'UW_Widget_Single_Image',
+        'UW_RSS_Widget',
+        'UW_Widget_Recent_Posts',
+        'UW_Widget_CommunityPhotos',
+        'UW_Widget_Categories',
+        'UW_Widget_Twitter',
+        'UW_KEXP_KUOW_Widget',
+        'UW_Showcase_Widget',
+        'UW_Subpage_Menu',
+        'UW_Nav_Menu_Widget',
+        'UW_Calendar',
+        'UW_Campus_Map',
+        'UW_Headline_Separator_Widget',
+        'UW_Headline_Widget',
+        'UW_Intro_Widget',
+        'UW_YouTube_Playlist_Widget',
+        'UW_Pride_Points',
+        'Pagelet_Widget',
+        //default PageBuilder
+        'SiteOrigin_Panels_Widget_Animated_Image',
+        'SiteOrigin_Panels_Widget_List',
+        'SiteOrigin_Panels_Widget_Price_Box',
+        'SiteOrigin_Panels_Widget_Testimonial',
+        'SiteOrigin_Panels_Widgets_Gallery',
+        'SiteOrigin_Panels_Widgets_PostContent',
+        'SiteOrigin_Panels_Widgets_Image',
+        'SiteOrigin_Panels_Widgets_PostLoop',
+        'SiteOrigin_Panels_Widgets_EmbeddedVideo',
+        'SiteOrigin_Panels_Widgets_Video',
+        'SiteOrigin_Panels_Widget_Call_To_Action',
+
+    );
+  }
+
+
+
 
 
   // NOT BEING USED AT THE MOMENT FROM HERE DOWN
