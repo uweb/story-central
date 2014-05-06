@@ -26,11 +26,6 @@ class UW_Story_Social_Widget extends WP_Widget {
                     <span>University of Washington</span>
                 </div>
                 <p><?= $text ?></p>
-                <?php
-                if (($type == 'Facebook') && (has_post_thumbnail($postID))) {
-                    get_the_post_thumbnail($postID);
-                }
-                ?>
             </div>
         </div>
         <?php
@@ -47,17 +42,34 @@ class UW_Story_Social_Widget extends WP_Widget {
         $type = $instance['type'];
         $text = $instance['text'];
         $socials = array('Facebook', 'Twitter');
+        $rand = rand(0, 9999);
         ?>
         <label for='social-type'>Social Network</label>
         <select id='social-type' name='<?= $this->get_field_name('type') ?>'><?php
         foreach ($socials as $social) {
             ?>
-            <option value='<?= $social ?>' <?php if ($type == $social){ ?> selected <?php } ?>><?= $social ?></option>
+            <option class='<?= $social ?>' value='<?= $social ?>' <?php if ($type == $social){ ?> selected <?php } ?>><?= $social ?></option>
         <?php } ?>
         </select>
         <?php
-        wp_enqueue_media();
-        wp_editor($text, $this->get_field_name('text'));
+        wp_editor($text, $this->get_field_id('text_' . $rand), array('textarea_rows' => 6, 'textarea_name' => $this->get_field_name('text')));
+        ?>
+        <script>
+            jQuery(document).ready(
+                function($) {
+                    $( '.widget-control-save' ).click(
+                        function() {
+                            var saveID = $( this ).attr( 'id' );
+                            var ID = saveID.replace( /-savewidget/, '' );
+                            var textTab = ID + '-text_<?= $rand ?>-html';
+                            $( '#'+textTab ).trigger( 'click' );
+
+                        }
+                    );
+                }
+            );
+        </script>
+        <?php
     }
 }
 ?>
