@@ -152,10 +152,9 @@ class Story
         global $post;
         $custom = get_post_custom($post->ID);
         $username = $custom['twitter[name]'][0];
-?>
-
+        ?>
         <label class="" for="twitter[name]">Username: </label><br/>
-        <input name="twitter[name]" type="text" id="twitter-name" value="<?= $username ?>"/> <br/><br/>
+        <input name="twitter[name]" type="text" id="twitter-name" value="<?= $username ?>"/> <br/>
         <label class="" for="twitter[tweet]">Tweet: </label>
         <?php
         $content = $custom['twitter[tweet]'][0];
@@ -175,9 +174,19 @@ class Story
         <?php
     }
 
-  function facebook_cb() {
-    echo 'facebook callback';
-  }
+    function facebook_cb() {
+        global $post;
+        $custom = get_post_custom($post->ID);
+        $username = $custom['facebook[name]'][0];
+        ?>
+        <label class="" for="facebook[name]">Username: </label><br/>
+        <input name="facebook[name]" type="text" id="facebook-name" value="<?= $username ?>"/> <br/>
+        <label class="" for="facebook[post]">Post: </label>
+        <?php
+        $fb_post = $custom['facebook[post]'][0];
+        wp_enqueue_media();
+        wp_editor($fb_post, 'facebook-post', array('textarea_name'=> "facebook[post]", 'textarea_rows' => 5));
+    }
 
   function links_cb() {
     echo 'links';
@@ -188,6 +197,9 @@ class Story
         $twitter = $_POST['twitter'];
         update_post_meta($post->ID, 'twitter[tweet]', $twitter['tweet']);
         update_post_meta($post->ID, 'twitter[name]', $twitter['name']);
+        $facebook = $_POST['facebook'];
+        update_post_meta($post->ID, 'facebook[post]', $facebook['post']);
+        update_post_meta($post->ID, 'facebook[name]', $facebook['name']);
     }
 }
 
