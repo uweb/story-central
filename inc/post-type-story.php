@@ -9,6 +9,7 @@ class Story
   {
     add_action( 'init', array( $this, 'init' ) );
     add_action( 'widgets_init', array( $this, 'deregister_widgets' ) );
+    add_action('save_post', array( $this, 'save_story_cb'));
   }
 
   function init()
@@ -52,7 +53,7 @@ class Story
           'has_archive' => false,
           'menu_position' => 5,
           'show_in_nav_menus' => true,
-          //'register_meta_box_cb' => array( $this, 'add_meta_boxes' )
+          'register_meta_box_cb' => array( $this, 'add_meta_boxes' )
           //'supports' => array( 'title', 'editor', 'category' )
         )
     );
@@ -147,25 +148,32 @@ class Story
     echo 'Add gallery button here';
   }
 
-  function twitter_cb() {
+    function twitter_cb() {
+        global $post;
+        $custom = get_post_custom($post->ID);
+        $username = $custom['twitter[name]'][0];
 ?>
 
-      <label class="" for="twitter[name]">Username: </label><br/>
-      <input name="twitter[name]" type="text" id="twitter-name" value=""/> <br/><br/>
-      <label class="" for="twitter[tweet]">Tweet: </label> <textarea name="twitter[tweet]" id="twitter-tweet" style="resize: none; margin: 0; height: 4em; width: 98%;"></textarea>
-      <p id="twitter-character-count">140 characters left!</p>
-      <script>
+        <label class="" for="twitter[name]">Username: </label><br/>
+        <input name="twitter[name]" type="text" id="twitter-name" value="<?= $username ?>"/> <br/><br/>
+        <label class="" for="twitter[tweet]">Tweet: </label>
+        <?php
+        $content = $custom['twitter[tweet]'][0];
+        wp_editor($content, 'twitter-tweet', array('textarea_name'=> "twitter[tweet]", 'media_buttons'=> false, 'textarea_rows' => 3));
+        ?>
+        <p id="twitter-character-count">140 characters left!</p>
+        <script>
         jQuery(document).ready(function( $ ) {
-          var $tweet = $('#twitter-tweet')
+          var $tweetHTML = $('#twitter-tweet')
+              , $tweetVisual = tinyMCE.editors.twitter-tweet //TODO: tie in the char count here too
               , $count = $('#twitter-character-count')
               , limit = 140
 
-          $tweet.on( 'keyup', function( e ) { var len = $(this).val().length, count = limit - len, characters = count === 1 ? 'character' : 'characters', message = count + ' ' + characters + ' left!'; $count.html(message);})
+          $tweetHTML.on( 'keyup', function( e ) { var len = $(this).val().length, count = limit - len, characters = count === 1 ? 'character' : 'characters', message = count + ' ' + characters + ' left!'; $count.html(message);})
         })
-      </script>
-
-<?php
-  }
+        </script>
+        <?php
+    }
 
   function facebook_cb() {
     echo 'facebook callback';
@@ -174,8 +182,13 @@ class Story
   function links_cb() {
     echo 'links';
   }
-
-
+    
+    function save_story_cb() {
+        global $post;
+        $twitter = $_POST['twitter'];
+        update_post_meta($post->ID, 'twitter[tweet]', $twitter['tweet']);
+        update_post_meta($post->ID, 'twitter[name]', $twitter['name']);
+    }
 }
 
 new Story;
