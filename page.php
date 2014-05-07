@@ -5,7 +5,7 @@
 
 
 			<div class="row show-grid">
-				<div class="span8">
+				<div id="main" class="span8">
 
 
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -15,12 +15,7 @@
       <?php uw_breadcrumbs(); ?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<header class="entry-header">
-					<?php $title = get_the_title();
-					if (!empty($title)): ?>
-					<h1 class="entry-title"><?php echo apply_filters('italics', $title); ?></h1>
-					<?php endif; ?>
-				</header><!-- .entry-header -->
+				
 				<div class="entry-content">
 					<?php the_content(); ?>
 					<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'uw' ) . '</span>', 'after' => '</div>' ) ); ?>
