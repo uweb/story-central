@@ -191,17 +191,17 @@ class Story
         <?php
     }
 
-    function facebook_cb() {
-        global $post;
-        $custom = get_post_custom($post->ID);
-        $username = $custom['facebook[name]'][0];
-        ?>
-        <label class="" for="facebook[name]">Username: </label><br/>
-        <input name="facebook[name]" type="text" id="facebook-name" value="<?= $username ?>"/> <br/>
+    function facebook_cb( $post ) {
+        $facebook = (object) get_post_meta($post->ID, 'facebook', true); ?>
+
+        <p>
+          <label class="" for="facebook[name]">Username: </label><br/>
+          <input name="facebook[name]" type="text" id="facebook-name" value="<?php echo $facebook->name ?>"/>
+        </p>
+
         <label class="" for="facebook[post]">Post: </label>
-        <?php
-        $fb_post = $custom['facebook[post]'][0];
-        wp_editor($fb_post, 'facebook-post', array('textarea_name'=> "facebook[post]", 'textarea_rows' => 5));
+
+        <?php wp_editor( $facebook->post, 'facebook-post', array('textarea_name'=> "facebook[post]", 'textarea_rows' => 5, 'teeny' => true ) );
     }
 
     function links_cb() {
@@ -224,13 +224,11 @@ class Story
     function save_story_cb( $post_id ) {
         // todo: validation
         $twitter = $_POST['twitter'];
+        $facebook = $_POST['facebook'];
+
         update_post_meta( $post_id, 'twitter', $twitter );
+        update_post_meta( $post_id, 'facebook', $facebook );
 
-
-
-        // update_post_meta($post->ID, 'twitter[tweet]', $twitter['tweet']);
-        // update_post_meta($post->ID, 'twitter[name]', $twitter['name']);
-        // $facebook = $_POST['facebook'];
         // update_post_meta($post->ID, 'facebook[post]', $facebook['post']);
         // update_post_meta($post->ID, 'facebook[name]', $facebook['name']);
         // $links = $_POST['links'];

@@ -19,6 +19,9 @@
 
 				<?php the_twitter_section( get_the_ID() ); ?>
 
+				<?php the_facebook_section( get_the_ID() ); ?>
+
+
       <?php endwhile; ?>
 
       </div>
