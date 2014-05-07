@@ -20,7 +20,7 @@ Version: 0.1
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
@@ -41,6 +41,9 @@ Version: 0.1
 }
 .slideshow-widget h3 {
   font-weight: 800;
+}
+#footerBG {
+  background-color: #fff;
 }
 #branding {
   background: none !important;

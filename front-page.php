@@ -5,7 +5,7 @@
     <div id="story-bank-info">
       <h1><?php the_title(); ?></h1>
       <?php the_content(); ?>
-      <a class="button" href="<?php echo admin_url('post-new.php?post_type=story'); ?>">Add a story</a>
+      <a class="button" href="<?php echo admin_url('post-new.php?post_type=story'); ?>">Upload stories</a>
     </div>
 
     <div id="flex-bg">
