@@ -13,6 +13,8 @@ class UW_Story_Social_Widget extends WP_Widget {
     }
 
     public function widget($args, $instance){
+        global $post;
+        $postID = $post->ID;
         $type = $instance['type'];
         $text = $instance['text'];
         ?>
@@ -40,15 +42,33 @@ class UW_Story_Social_Widget extends WP_Widget {
         $type = $instance['type'];
         $text = $instance['text'];
         $socials = array('Facebook', 'Twitter');
+        $rand = rand(0, 9999);
         ?>
         <label for='social-type'>Social Network</label>
         <select id='social-type' name='<?= $this->get_field_name('type') ?>'><?php
         foreach ($socials as $social) {
             ?>
-            <option value='<?= $social ?>' <?php if ($type == $social){ ?> selected <?php } ?>><?= $social ?></option>
+            <option class='<?= $social ?>' value='<?= $social ?>' <?php if ($type == $social){ ?> selected <?php } ?>><?= $social ?></option>
         <?php } ?>
         </select>
-        <input type='text' name='<?= $this->get_field_name('text') ?>' value='<?= $text ?>' />
+        <?php
+        wp_editor($text, $this->get_field_id('text_' . $rand), array('textarea_rows' => 6, 'textarea_name' => $this->get_field_name('text')));
+        ?>
+        <script>
+            jQuery(document).ready(
+                function($) {
+                    $( '.widget-control-save' ).click(
+                        function() {
+                            var saveID = $( this ).attr( 'id' );
+                            var ID = saveID.replace( /-savewidget/, '' );
+                            var textTab = ID + '-text_<?= $rand ?>-html';
+                            $( '#'+textTab ).trigger( 'click' );
+
+                        }
+                    );
+                }
+            );
+        </script>
         <?php
     }
 }
