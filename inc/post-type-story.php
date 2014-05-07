@@ -31,19 +31,19 @@ class Story
 
     );
 
-        $pillar_labels = array(
-            'name'              => 'Pillars',
-                'singular_name'     => 'Pillar',
-                'search_items'      => 'Search Pillars',
-                'all_items'         => 'All Pillars',
-                'parent_item'       => 'Parent Pillar',
-                'parent_item_colon' => 'Parent Pillar:',
-                'edit_item'         => 'Edit Pillar',
-                'update_item'       => 'Update Pillar',
-                'add_new_item'      => 'Add New Pillar',
-                'new_item_name'     => 'New Pillar Name',
-                'menu_name'         => 'Pillar',
-        );
+    $pillar_labels = array(
+        'name'              => 'Pillars',
+            'singular_name'     => 'Pillar',
+            'search_items'      => 'Search Pillars',
+            'all_items'         => 'All Pillars',
+            'parent_item'       => 'Parent Pillar',
+            'parent_item_colon' => 'Parent Pillar:',
+            'edit_item'         => 'Edit Pillar',
+            'update_item'       => 'Update Pillar',
+            'add_new_item'      => 'Add New Pillar',
+            'new_item_name'     => 'New Pillar Name',
+            'menu_name'         => 'Pillar',
+    );
 
     register_post_type( self::POST_TYPE,
         array(
@@ -144,32 +144,49 @@ class Story
         add_meta_box( 'orig_authors', 'Original Story Authors', array( $this, 'original_authors_cb' ), self::POST_TYPE );
     }
 
-  function gallery_cb() {
-    echo 'Add gallery button here';
-  }
+    function gallery_cb() {
+      echo 'Add gallery button here';
+    }
 
-    function twitter_cb() {
-        global $post;
-        $custom = get_post_custom($post->ID);
-        $username = $custom['twitter[name]'][0];
-        ?>
-        <label class="" for="twitter[name]">Username: </label><br/>
-        <input name="twitter[name]" type="text" id="twitter-name" value="<?= $username ?>"/> <br/>
+    function twitter_cb( $post ) {
+        $twitter = (object) get_post_meta( $post->ID, 'twitter', true ); ?>
+
+
+        <p>
+          <label class="" for="twitter[name]">Username: </label>
+          <input name="twitter[name]" type="text" id="twitter-name" value="<?php echo $twitter->name ?>"/>
+        </p>
+
         <label class="" for="twitter[tweet]">Tweet: </label>
-        <?php
-        $content = $custom['twitter[tweet]'][0];
-        wp_editor($content, 'twitter-tweet', array('textarea_name'=> "twitter[tweet]", 'media_buttons'=> false, 'textarea_rows' => 3));
-        ?>
-        <p id="twitter-character-count">140 characters left!</p>
-        <script>
-        jQuery(document).ready(function( $ ) {
-          var $tweetHTML = $('#twitter-tweet')
-              , $tweetVisual = tinyMCE.editors.twitter-tweet //TODO: tie in the char count here too
-              , $count = $('#twitter-character-count')
-              , limit = 140
 
-          $tweetHTML.on( 'keyup', function( e ) { var len = $(this).val().length, count = limit - len, characters = count === 1 ? 'character' : 'characters', message = count + ' ' + characters + ' left!'; $count.html(message);})
-        })
+        <?php wp_editor( $twitter->tweet, 'twitter-tweet', array('textarea_name'=> "twitter[tweet]", 'media_buttons'=> false, 'textarea_rows' => 3, 'teeny' => true ) ); ?>
+
+        <p id="twitter-character-count"><?php echo 140 - strlen($twitter->tweet) ?> characters left!</p>
+
+        <script type="text/javascript">
+
+          jQuery(document).ready(function( $ ) {
+
+            var editor   = tinyMCEPreInit.mceInit['twitter-tweet']
+                , $count = $('#twitter-character-count')
+                , limit  = 140
+
+            editor.setup = function( ed ) {
+
+              ed.onKeyUp.add(function(ed, e) {
+                var text = ed.getContent({format : 'text'})
+                  , count = Math.max( 0, limit - text.length )
+                  , characters = count === 1 ? 'character' : 'characters'
+                  , message = count + ' ' + characters + ' left!'
+
+                $count.html(message)
+
+              })
+
+            }
+
+          })
+
         </script>
         <?php
     }
@@ -203,19 +220,23 @@ class Story
         <?php
         wp_editor($orig_authors, 'original_authors', array('textarea_name' => 'orig_authors', 'media_buttons'=> false, 'textarea_rows' => 3));
     }
-    
-    function save_story_cb() {
-        global $post;
+
+    function save_story_cb( $post_id ) {
+        // todo: validation
         $twitter = $_POST['twitter'];
-        update_post_meta($post->ID, 'twitter[tweet]', $twitter['tweet']);
-        update_post_meta($post->ID, 'twitter[name]', $twitter['name']);
-        $facebook = $_POST['facebook'];
-        update_post_meta($post->ID, 'facebook[post]', $facebook['post']);
-        update_post_meta($post->ID, 'facebook[name]', $facebook['name']);
-        $links = $_POST['links'];
-        update_post_meta($post->ID, 'links', $links);
-        $orig_authors = $_POST['orig_authors'];
-        update_post_meta($post->ID, 'orig_authors', $orig_authors);
+        update_post_meta( $post_id, 'twitter', $twitter );
+
+
+
+        // update_post_meta($post->ID, 'twitter[tweet]', $twitter['tweet']);
+        // update_post_meta($post->ID, 'twitter[name]', $twitter['name']);
+        // $facebook = $_POST['facebook'];
+        // update_post_meta($post->ID, 'facebook[post]', $facebook['post']);
+        // update_post_meta($post->ID, 'facebook[name]', $facebook['name']);
+        // $links = $_POST['links'];
+        // update_post_meta($post->ID, 'links', $links);
+        // $orig_authors = $_POST['orig_authors'];
+        // update_post_meta($post->ID, 'orig_authors', $orig_authors);
     }
 }
 
