@@ -204,37 +204,32 @@ class Story
         <?php wp_editor( $facebook->post, 'facebook-post', array('textarea_name'=> "facebook[post]", 'textarea_rows' => 5, 'teeny' => true ) );
     }
 
-    function links_cb() {
-        global $post;
-        $custom = get_post_custom($post->ID);
-        $links = $custom['links'][0];
-        wp_editor($links, 'related-links', array('textarea_name' => 'links', 'media_buttons'=> false, 'textarea_rows' => 3));
+    function links_cb( $post ) {
+        $links = (String) get_post_meta($post->ID, 'links', true);
+        wp_editor($links, 'related-links', array('textarea_name' => 'links', 'media_buttons'=> false, 'textarea_rows' => 3, 'teeny' => true ) );
     }
 
-    function original_authors_cb() {
-        global $post;
-        $custom = get_post_custom($post->ID);
-        $orig_authors = $custom['orig_authors'][0];
-        ?>
-        <label class="" for="orig_authors">Original author(s) name and contact information: </label>
-        <?php
-        wp_editor($orig_authors, 'original_authors', array('textarea_name' => 'orig_authors', 'media_buttons'=> false, 'textarea_rows' => 3));
+    function original_authors_cb( $post ) {
+        $authors = (String) get_post_meta( $post->ID, 'authors', true ); ?>
+
+        <label class="" for="authors">Original author(s) name and contact information: </label>
+
+        <?php wp_editor( $authors, 'original-authors', array('textarea_name' => 'authors', 'media_buttons'=> false, 'textarea_rows' => 3, 'teeny' => true ));
     }
 
     function save_story_cb( $post_id ) {
         // todo: validation
-        $twitter = $_POST['twitter'];
+        $twitter  = $_POST['twitter'];
         $facebook = $_POST['facebook'];
+        $links    = $_POST['links'];
+        $authors  = $_POST['authors'];
+
 
         update_post_meta( $post_id, 'twitter', $twitter );
         update_post_meta( $post_id, 'facebook', $facebook );
+        update_post_meta( $post_id, 'links', $links);
+        update_post_meta( $post_id, 'authors', $authors);
 
-        // update_post_meta($post->ID, 'facebook[post]', $facebook['post']);
-        // update_post_meta($post->ID, 'facebook[name]', $facebook['name']);
-        // $links = $_POST['links'];
-        // update_post_meta($post->ID, 'links', $links);
-        // $orig_authors = $_POST['orig_authors'];
-        // update_post_meta($post->ID, 'orig_authors', $orig_authors);
     }
 }
 

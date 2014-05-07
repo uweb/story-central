@@ -40,7 +40,7 @@ function get_the_twitter_section( $post_id )
            </div>
           </div>';
 
-  echo $html;
+  story_section( $html );
 }
 
 /**
@@ -64,12 +64,71 @@ function get_the_facebook_section( $post_id )
             <div class="facebook-widget">
               <div class="social-head">
                 <img src="'. get_stylesheet_directory_uri() .'/img/social.jpg">
-                <span>University of Washington</span><p>'. $facebook->post .'</p>
+                <span>University of Washington</span><p>'. apply_filters('the_content', $facebook->post ) .'</p>
               </div>
-           </div>
+            </div>
           </div>';
 
-  echo $html;
+  story_section( $html );
+
+}
 
 
+/**
+* External link section
+*/
+
+function the_external_links_section( $post_id )
+{
+  echo get_the_external_links_section( $post_id );
+}
+
+function get_the_external_links_section( $post_id )
+{
+  $external = (String) get_post_meta( $post_id, 'links', true );
+
+  if ( ! $external ) return;
+
+  $html = '<div class="widget">
+            <h3 class="widget-title">Related Links</h3>
+            <p>'. $external .'</p>
+          </div>';
+
+  story_section( $html );
+
+}
+
+
+/**
+* External link section
+*/
+
+function the_original_authors_section( $post_id )
+{
+  echo get_the_original_authors_section( $post_id );
+}
+
+function get_the_original_authors_section( $post_id )
+{
+  $authors = (String) get_post_meta( $post_id, 'authors', true );
+
+  if ( ! $authors ) return;
+
+  $html = '<div class="widget">
+            <h3 class="widget-title">Original authors</h3>
+            <p>'. $authors .'</p>
+          </div>';
+
+  story_section( $html );
+
+}
+
+
+function story_section( $html )
+{
+  echo '<div class="block-row">
+          <div class="block-full first-block last-block">
+            ' . $html . '
+          </div>
+        </div>';
 }
