@@ -5,7 +5,7 @@
  * - Provides an ajax url for zipping up and downloading all the image files
  */
 
-class UW_Story_Gallery
+class UW_Story_Gallery extends WP_Widget
 {
 
   function UW_Story_Gallery()

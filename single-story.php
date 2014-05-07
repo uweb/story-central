@@ -17,6 +17,7 @@
     			<?php the_content(); ?>
         </div>
 
+				<?php the_twitter_section( get_the_ID() ); ?>
 
       <?php endwhile; ?>
 
