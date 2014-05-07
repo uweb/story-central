@@ -113,3 +113,9 @@ Version: 0.1
 #main .widget .widget-title {
   text-transform: none;
 }
+#main .widget.twitter-feed-widget,
+#main .widget.siteorigin-panels-gallery-widget {
+  -webkit-box-shadow: none ;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
