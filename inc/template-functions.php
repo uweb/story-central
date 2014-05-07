@@ -28,14 +28,15 @@ function the_twitter_section( $post_id )
 function get_the_twitter_section( $post_id )
 {
   $twitter = (object) get_post_meta($post_id, 'twitter', true );
-  $html = '<div class="widget uw_story_social">
+  $html = '<div class="widget uw-story-social">
             <h3 class="widget-title">Twitter</h3>
             <div class="twitter-widget">
               <div class="social-head">
                 <img src="'. get_stylesheet_directory_uri() .'/img/social.jpg">
                 <span>University of Washington</span><p>'. $twitter->tweet .'</p>
               </div>
-           </div>';
+           </div>
+          </div>';
 
   echo $html;
 }
