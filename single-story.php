@@ -36,8 +36,6 @@
 					</div><!-- #sidebar -->
 			</div><!-- #secondary -->
 
-
-
 		</div>
 
 	</div><!-- #content -->

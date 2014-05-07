@@ -11,6 +11,7 @@ module.exports = function(grunt) {
           "js/libs/jquery.zclip.js"
         ],
         custom: [
+          "js/background.js",
           "js/copypasta.js",
           "js/gallery.js"
         ],

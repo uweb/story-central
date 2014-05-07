@@ -8,7 +8,7 @@ Template: uw-2013
 Version: 0.1
 */
 #flex-bg {
-  position: fixed;
+  position: absolute;
   z-index: -1;
   top: 0;
   right: 0;

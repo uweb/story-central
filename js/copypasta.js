@@ -5,51 +5,40 @@ $(document).ready(function() {
       return;
   }
 
-$('.entry-content .widget').each(function() {
-  var $this = $(this)
-  if ( $this.attr('class').indexOf('gallery-widget') > -1 ) return
-  $this.append('<a class="copy pull-right button">Copy</a>')
-});
+
+  $('.entry-content .widget').each(function() {
+    var $this = $(this)
+    if ( $this.attr('class').indexOf('gallery-widget') > -1 ) return
+    $this.append('<a class="copy pull-right button">Copy</a>')
+  });
 
 
-$('.copy').zclip( {
+  $('.copy').zclip( {
 
-  path: '/wp-content/themes/story/js/libs/ZeroClipboard.swf',
+    path: '/wp-content/themes/story/js/libs/ZeroClipboard.swf',
 
-  copy : function() {
-    return $(this).siblings('.textwidget').html()
-  },
+    copy : function() {
+      return $(this).siblings('.textwidget').html()
+    },
 
-  afterCopy:function(){
-    var alert = $(this).closest('.widget').append('<div class="alert alert-success">Copied to clipboard</div>').find('.alert')
+    afterCopy:function(){
+      var alert = $(this).closest('.widget').append('<div class="alert alert-success">Copied to clipboard</div>').find('.alert')
 
-    _.delay( function() {
-      alert.fadeOut()
-    }, 500)
+      _.delay( function() {
+        alert.fadeOut()
+      }, 500)
 
-  }
+    }
 
-}).mouseenter( function() {
+  }).mouseenter( function() {
 
-  $(this).closest('.widget').css({outline: '2px dashed #eee'} )
+    $(this).closest('.widget').css({outline: '2px dashed #eee'} )
 
-}).mouseleave( function() {
+  }).mouseleave( function() {
 
-  $(this).closest('.widget').css({outline: ''} )
+    $(this).closest('.widget').css({outline: ''} )
 
-})
-
-// Blurred background
-
-$(window).scroll(function(e) {
-    var s = $(window).scrollTop(),
-        opacityVal = (s / 150.0);
-
-    $('.blrd').css('opacity', opacityVal);
-});
-
+  })
 
 
 });
-
-
