@@ -141,6 +141,7 @@ class Story
         add_meta_box( 'twitter', 'Twitter', array( $this, 'twitter_cb' ), self::POST_TYPE );
         add_meta_box( 'facebook', 'Facebook', array( $this, 'facebook_cb' ), self::POST_TYPE );
         add_meta_box( 'links', 'Related Links', array( $this, 'links_cb' ), self::POST_TYPE );
+        add_meta_box( 'orig_authors', 'Original Story Authors', array( $this, 'original_authors_cb' ), self::POST_TYPE );
     }
 
   function gallery_cb() {
@@ -192,6 +193,16 @@ class Story
         $links = $custom['links'][0];
         wp_editor($links, 'related-links', array('textarea_name' => 'links', 'media_buttons'=> false, 'textarea_rows' => 3));
     }
+
+    function original_authors_cb() {
+        global $post;
+        $custom = get_post_custom($post->ID);
+        $orig_authors = $custom['orig_authors'][0];
+        ?>
+        <label class="" for="orig_authors">Original author(s) name and contact information: </label>
+        <?php
+        wp_editor($orig_authors, 'original_authors', array('textarea_name' => 'orig_authors', 'media_buttons'=> false, 'textarea_rows' => 3));
+    }
     
     function save_story_cb() {
         global $post;
@@ -203,6 +214,8 @@ class Story
         update_post_meta($post->ID, 'facebook[name]', $facebook['name']);
         $links = $_POST['links'];
         update_post_meta($post->ID, 'links', $links);
+        $orig_authors = $_POST['orig_authors'];
+        update_post_meta($post->ID, 'orig_authors', $orig_authors);
     }
 }
 
