@@ -39,6 +39,9 @@ Version: 0.1
 .widget_search h2 {
   display: none;
 }
+.slideshow-widget h3 {
+  font-weight: 800;
+}
 #branding {
   background: none !important;
 }
