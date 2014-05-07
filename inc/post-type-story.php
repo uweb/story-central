@@ -65,6 +65,8 @@ class Story
 			'hierarchical' => true,
 		));
 
+    register_taxonomy_for_object_type(self::TAXONOMY, self::POST_TYPE);
+
   }
 
   function deregister_widgets()
@@ -134,15 +136,12 @@ class Story
 
 
 
-  // NOT BEING USED AT THE MOMENT FROM HERE DOWN
-
-  function add_meta_boxes( $post )
-  {
-    add_meta_box( 'gallery',    'Gallery',      array( $this, 'gallery_cb' ),     self::POST_TYPE );
-    add_meta_box( 'twitter',    'Twitter',     array( $this, 'twitter_cb' ),     self::POST_TYPE );
-    add_meta_box( 'facebook', 'Facebook', array( $this, 'facebook_cb' ), self::POST_TYPE );
-    add_meta_box( 'links',        'Links',       array( $this, 'links_cb' ),        self::POST_TYPE );
-  }
+    function add_meta_boxes( $post ) {
+        add_meta_box( 'gallery', 'Gallery', array( $this, 'gallery_cb' ), self::POST_TYPE );
+        add_meta_box( 'twitter', 'Twitter', array( $this, 'twitter_cb' ), self::POST_TYPE );
+        add_meta_box( 'facebook', 'Facebook', array( $this, 'facebook_cb' ), self::POST_TYPE );
+        add_meta_box( 'links', 'Related Links', array( $this, 'links_cb' ), self::POST_TYPE );
+    }
 
   function gallery_cb() {
     echo 'Add gallery button here';
@@ -184,13 +183,15 @@ class Story
         <label class="" for="facebook[post]">Post: </label>
         <?php
         $fb_post = $custom['facebook[post]'][0];
-        wp_enqueue_media();
         wp_editor($fb_post, 'facebook-post', array('textarea_name'=> "facebook[post]", 'textarea_rows' => 5));
     }
 
-  function links_cb() {
-    echo 'links';
-  }
+    function links_cb() {
+        global $post;
+        $custom = get_post_custom($post->ID);
+        $links = $custom['links'][0];
+        wp_editor($links, 'related-links', array('textarea_name' => 'links', 'media_buttons'=> false, 'textarea_rows' => 3));
+    }
     
     function save_story_cb() {
         global $post;
@@ -200,6 +201,8 @@ class Story
         $facebook = $_POST['facebook'];
         update_post_meta($post->ID, 'facebook[post]', $facebook['post']);
         update_post_meta($post->ID, 'facebook[name]', $facebook['name']);
+        $links = $_POST['links'];
+        update_post_meta($post->ID, 'links', $links);
     }
 }
 
