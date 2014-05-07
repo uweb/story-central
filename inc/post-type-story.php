@@ -31,19 +31,19 @@ class Story
 
     );
 
-    $pillar_labels = array(
-      'name'              => 'Pillars',
-  		'singular_name'     => 'Pillar',
-  		'search_items'      => 'Search Pillars',
-  		'all_items'         => 'All Pillars',
-  		'parent_item'       => 'Parent Pillar',
-  		'parent_item_colon' => 'Parent Pillar:',
-  		'edit_item'         => 'Edit Pillar',
-  		'update_item'       => 'Update Pillar',
-  		'add_new_item'      => 'Add New Pillar',
-  		'new_item_name'     => 'New Pillar Name',
-		  'menu_name'         => 'Pillar',
-    );
+        $pillar_labels = array(
+            'name'              => 'Pillars',
+                'singular_name'     => 'Pillar',
+                'search_items'      => 'Search Pillars',
+                'all_items'         => 'All Pillars',
+                'parent_item'       => 'Parent Pillar',
+                'parent_item_colon' => 'Parent Pillar:',
+                'edit_item'         => 'Edit Pillar',
+                'update_item'       => 'Update Pillar',
+                'add_new_item'      => 'Add New Pillar',
+                'new_item_name'     => 'New Pillar Name',
+                'menu_name'         => 'Pillar',
+        );
 
     register_post_type( self::POST_TYPE,
         array(
@@ -58,14 +58,14 @@ class Story
         )
     );
 
-    register_taxonomy( self::TAXONOMY, self::POST_TYPE, array(
-      'labels' => $pillar_labels,
-      'show_ui' => false,
+        register_taxonomy( self::TAXONOMY, self::POST_TYPE, array(
+            'labels' => $pillar_labels,
+            'show_ui' => true,
 			'rewrite' => array( 'slug' => 'pillar' ),
 			'hierarchical' => true,
 		));
 
-    register_taxonomy_for_object_type(self::TAXONOMY, self::POST_TYPE);
+        register_taxonomy_for_object_type(self::TAXONOMY, self::POST_TYPE);
 
   }
 
