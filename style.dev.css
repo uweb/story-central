@@ -7,6 +7,10 @@ Author URI: http://uw.edu/
 Template: uw-2013
 Version: 0.1
 */
+.story-title {
+  background: url('/wp-content/themes/uw-2013/img/widgets/headline-background.png') no-repeat -16px -148px transparent;
+  padding: 32px 0 5px;
+}
 .widget .widget-title {
   background: url('/wp-content/themes/uw-2013/img/widgets/headline-background.png') no-repeat -16px -148px transparent;
   padding: 32px 0 5px;
