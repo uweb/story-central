@@ -3,8 +3,6 @@
 <?php while( have_posts() ) : the_post(); ?>
 
     <div id="story-bank-info">
-      <h1><?php the_title(); ?></h1>
-      <?php the_content(); ?>
       <a class="button" href="<?php echo admin_url('post-new.php?post_type=story'); ?>">Upload stories</a>
     </div>
 
@@ -23,11 +21,13 @@
 
             <h2><?php echo $pillar->name; ?></h2>
 
-            <?php $stories = get_stories_with_pillar($pillar); ?>
+            <?php $stories = get_stories_with_pillar($pillar, 4); ?>
 
             <?php foreach( get_stories_with_pillar($pillar) as $post ) : setup_postdata($post); ?>
 
-              <a href="<?php the_permalink(); ?>"> <?php the_title(); ?></a>
+                <div class='story-tile' style='background-image:url("<?= get_media_gallery_featured_image_url($post->ID) ?>");' >
+                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                </div>
 
             <?php endforeach; ?>
 
