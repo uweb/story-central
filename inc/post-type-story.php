@@ -144,8 +144,72 @@ class Story
         add_meta_box( 'orig_authors', 'Original Story Authors', array( $this, 'original_authors_cb' ), self::POST_TYPE );
     }
 
-    function gallery_cb() {
-      echo 'Add gallery button here';
+    function gallery_cb( $post ) {
+      $gallery = (String) get_post_meta( $post->ID, 'gallery', true ); $text = !$gallery ? 'Add a' : 'Edit'; ?>
+
+      <div class="uploader">
+        <input type="text" name="gallery" id="gallery-ids" class="" value="<?php echo $gallery; ?>"/>
+        <a class="button" name="gallery" id="story-gallery" ><?php echo $text ?> gallery</a>
+      </div>
+
+      <script type="text/javascript">
+      var media;
+
+      (function($) {
+
+        media = media || {}
+        media = {
+          button : '#story-gallery',
+          detail : '#gallery-ids',
+          init : function() {
+            $(this.button).on( 'click', $.proxy( this.open, this ) )
+          },
+          open : function( e ) {
+
+            if ( this._frame ) {
+              this._frame.setState('gallery-edit')
+              this._frame.open();
+              return;
+            }
+
+              this._frame = wp.media.frames.frame = wp.media({
+                className: 'media-frame uw-gallery-media-frame',
+                frame: 'post',
+                state : $(this.detail).val().length > 0 ? 'gallery-edit' : 'gallery',
+                multiple: true,
+                title: 'Create a gallery',
+              })
+
+            this._frame.on('activate', this.hideSidebar)
+            //this._frame.on('open', $.proxy(this.activateLibrary, this ) )
+            this._frame.on('update', $.proxy( this.handleMedia, this ) )
+            this._frame.on('close', $.proxy(this.close , this ) )
+            this._frame.open()
+          },
+
+          handleMedia : function() {
+            var attachments = this._frame.state().get('library').toJSON()
+            $(this.detail).val( _.pluck( attachments, 'id' ).join(',') )
+          },
+
+         close : function() {
+           $(this.detail).html('Edit gallery')
+         },
+
+         hideSidebar : function() {
+           $('media-modal').addClass( 'no-sidebar' )
+         }
+
+      }
+
+      $(document).ready(function(){ media.init() })
+
+    })(jQuery)
+
+
+
+      </script>
+      <?php
     }
 
     function twitter_cb( $post ) {
@@ -212,24 +276,25 @@ class Story
     function original_authors_cb( $post ) {
         $authors = (String) get_post_meta( $post->ID, 'authors', true ); ?>
 
-        <label class="" for="authors">Original author(s) name and contact information: </label>
+        <label  for="authors">Original author(s) name and contact information: </label>
 
         <?php wp_editor( $authors, 'original-authors', array('textarea_name' => 'authors', 'media_buttons'=> false, 'textarea_rows' => 3, 'teeny' => true ));
     }
 
     function save_story_cb( $post_id ) {
+
         // todo: validation
         $twitter  = $_POST['twitter'];
         $facebook = $_POST['facebook'];
         $links    = $_POST['links'];
         $authors  = $_POST['authors'];
-
+        $gallery  = $_POST['gallery'];
 
         update_post_meta( $post_id, 'twitter', $twitter );
         update_post_meta( $post_id, 'facebook', $facebook );
         update_post_meta( $post_id, 'links', $links);
         update_post_meta( $post_id, 'authors', $authors);
-
+        update_post_meta( $post_id, 'gallery', $gallery);
     }
 }
 

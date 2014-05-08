@@ -12,8 +12,8 @@ function get_stories_with_pillar( $pillar )
     'tax_query' => array(
         array(
         'taxonomy' => 'pillar',
-        'field' => 'term_id',
-        'terms' => $pillar )
+        'field'    => 'term_id',
+        'terms'    => $pillar )
   )) );
 }
 
