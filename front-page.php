@@ -16,6 +16,15 @@
 
       <div class="row show-grid">
         <div id="main" class="span8">
+            <?php $promoted = get_promoted_story(); ?>
+            <div class='promoted-story-tile'>
+                <div class='tile-background' style='background-image:url("<?= get_media_gallery_featured_image_url($promoted->ID )?>");' ></div>
+                <div class='tile-bottom'></div>
+                <div class='tile-title-holder'>
+                    <p><a href='<?= get_permalink($promoted->ID) ?>'><?= $promoted->post_title ?></a></p>
+                    <p class='excerpt'><?= $promoted->post_except ?></p>
+                </div>
+            </div>
           
           <?php foreach ( get_pillars() as $pillar ): ?>
 

@@ -20,6 +20,23 @@ function get_stories_with_pillar( $pillar, $num_posts=-1 )
     ) );
 }
 
+function get_promoted_story($pillar=false) {
+    $args = array(
+        'post_type' => 'story',
+        'posts_per_page' => 1,
+        'post_status' => 'publish',
+        'order' => 'DESC',
+        'order_by' => 'date',
+        'promoted' => 1
+    );
+    if (!empty($pillar)) {
+        $args['pillar'] = $pillar->slug;
+    }
+    $query = new WP_Query($args);
+    return $query->posts[0];
+}
+
+
 /**
   * Twitter section html
   */
