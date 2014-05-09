@@ -9,7 +9,7 @@ class Story
   {
     add_action( 'init', array( $this, 'init' ) );
     add_action( 'widgets_init', array( $this, 'deregister_widgets' ) );
-    add_action('save_post', array( $this, 'save_story_cb'));
+    add_action( 'save_post', array( $this, 'save_story_cb'));
   }
 
   function init()
@@ -148,8 +148,13 @@ class Story
       $gallery = (String) get_post_meta( $post->ID, 'gallery', true ); $text = !$gallery ? 'Add a' : 'Edit'; ?>
 
       <div class="uploader">
-        <input type="text" name="gallery" id="gallery-ids" class="" value="<?php echo $gallery; ?>"/>
+        <input type="text" name="gallery" id="gallery-ids" class="hidden" value="<?php echo $gallery; ?>"/>
         <a class="button" name="gallery" id="story-gallery" ><?php echo $text ?> gallery</a>
+        <p id="gallery-message">
+          <?php if( $gallery ): ?>
+            <?php echo sizeof( explode(',', $gallery ) ); ?> image(s) in the gallery. Click '<?php echo $text ?> gallery' to view them.
+          <?php endif; ?>
+        </p>
       </div>
 
       <script type="text/javascript">
@@ -161,44 +166,71 @@ class Story
         media = {
           button : '#story-gallery',
           detail : '#gallery-ids',
+          message : '#gallery-message',
           init : function() {
             $(this.button).on( 'click', $.proxy( this.open, this ) )
           },
           open : function( e ) {
 
-            if ( this._frame ) {
-              this._frame.setState('gallery-edit')
-              this._frame.open();
+            if ( wp.media.frames.storycentral ) {
+              wp.media.frames.storycentral.setState('gallery-edit')
+              wp.media.frames.storycentral.open()
+              //wp.media.gallery.edit('[gallery ids="'+ $(this.detail).val() +'"]')
               return;
             }
 
-              this._frame = wp.media.frames.frame = wp.media({
-                className: 'media-frame uw-gallery-media-frame',
-                frame: 'post',
-                state : $(this.detail).val().length > 0 ? 'gallery-edit' : 'gallery',
-                multiple: true,
-                title: 'Create a gallery',
-              })
+            this._frame = wp.media.frames.storycentral = wp.media({
+              frame: 'post',
+              state : $(this.detail).val().length > 0 ? 'gallery-edit' : 'gallery',
+              multiple: true,
+              title: 'Create a gallery',
+            })
 
-            this._frame.on('activate', this.hideSidebar)
-            //this._frame.on('open', $.proxy(this.activateLibrary, this ) )
+            // this._frame.on('activate', this.hideSidebar)
+            this._frame.on('open', $.proxy(this.activateLibrary, this ) )
             this._frame.on('update', $.proxy( this.handleMedia, this ) )
             this._frame.on('close', $.proxy(this.close , this ) )
             this._frame.open()
           },
 
+          activateLibrary : function() {
+
+            var selection = this._frame.state().get('library')
+              , value     = $(this.detail).val()
+              , ids = ! value ? false : value.split(',')
+
+
+            if ( ids ) {
+              $.each( ids, function( index, id ) {
+                wp.media.attachment(id).fetch({
+                  success: function( model, response ) {
+                    selection.add( model )
+                  }
+                })
+              });
+            }
+
+          },
+
           handleMedia : function() {
             var attachments = this._frame.state().get('library').toJSON()
             $(this.detail).val( _.pluck( attachments, 'id' ).join(',') )
+            $(this.message).html( attachments.length + " image(s) in gallery. Click 'Edit gallery' to view them.")
+            // _.each( attachments, $.proxy( this.appendImagePreview, this) )
           },
 
+          // appendImagePreview : function( attachment ) {
+          //   var ratio = attachment.width / attachment.height;
+          //   $(this.detail).after('<img src="'+ attachment.url +'" width="40" height="'+ 40 * ratio +'" />')
+          // },
+
          close : function() {
-           $(this.detail).html('Edit gallery')
+           $(this.button).html('Edit gallery')
          },
 
-         hideSidebar : function() {
-           $('media-modal').addClass( 'no-sidebar' )
-         }
+        //  hideSidebar : function() {
+        //    $('media-modal').addClass( 'no-sidebar' )
+        //  }
 
       }
 
@@ -248,6 +280,7 @@ class Story
               })
 
             }
+
 
           })
 

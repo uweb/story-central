@@ -16,6 +16,8 @@
     			<?php the_content(); ?>
         </div>
 
+				<?php the_media_gallery_section( get_the_ID() ); ?>
+
 				<?php the_twitter_section( get_the_ID() ); ?>
 
 				<?php the_facebook_section( get_the_ID() ); ?>

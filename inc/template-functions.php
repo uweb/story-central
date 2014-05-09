@@ -43,7 +43,7 @@ function get_the_twitter_section( $post_id )
            </div>
           </div>';
 
-  story_section( $html );
+  return story_section( $html );
 }
 
 /**
@@ -72,7 +72,7 @@ function get_the_facebook_section( $post_id )
             </div>
           </div>';
 
-  story_section( $html );
+  return story_section( $html );
 
 }
 
@@ -97,7 +97,7 @@ function get_the_external_links_section( $post_id )
             <p>'. $external .'</p>
           </div>';
 
-  story_section( $html );
+  return story_section( $html );
 
 }
 
@@ -122,14 +122,14 @@ function get_the_original_authors_section( $post_id )
             <p>'. $authors .'</p>
           </div>';
 
-  story_section( $html );
+  return story_section( $html );
 
 }
 
 
 function story_section( $html )
 {
-  echo '<div class="block-row">
+  return '<div class="block-row">
           <div class="block-full first-block last-block">
             ' . $html . '
           </div>
@@ -141,9 +141,17 @@ function story_section( $html )
  * TODO: Make this something that creates HTML
  */
 //this function is useless until we are returning HTML to print out
-//function the_media_gallery_array( $post_id ){
-//    echo get_the_media_gallery_array( $post_id);
-//} 
+function the_media_gallery_section( $post_id )
+{
+    echo get_the_media_gallery_section( $post_id );
+}
+
+function get_the_media_gallery_section( $post_id )
+{
+    $media = (String) get_post_meta($post_id, 'gallery', true);
+    $html = '<div class="widget story-gallery">' . do_shortcode('[gallery ids="'. $media .'"]') . '</div>';
+    return story_section( $html );
+}
 
 //this simply returns the array of attachment IDs
 function get_the_media_gallery_array( $post_id ){
