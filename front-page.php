@@ -24,9 +24,13 @@
             <?php $stories = get_stories_with_pillar($pillar, 4); ?>
 
             <?php foreach( get_stories_with_pillar($pillar) as $post ) : setup_postdata($post); ?>
-
-                <div class='story-tile' style='background-image:url("<?= get_media_gallery_featured_image_url($post->ID) ?>");' >
-                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                
+                <div class='story-tile'>
+                    <div class='tile-background' style='background-image:url("<?= get_media_gallery_featured_image_url($post->ID) ?>");' ></div>
+                    <div class='tile-bottom'></div>
+                    <div class='tile-title-holder'>
+                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                    </div>
                 </div>
 
             <?php endforeach; ?>

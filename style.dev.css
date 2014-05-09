@@ -138,3 +138,33 @@ Version: 0.1
   -moz-box-shadow: none;
   box-shadow: none;
 }
+div.story-tile {
+  height: 100px;
+  width: 25%;
+  float: left;
+  position: relative;
+}
+div.story-tile div.tile-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 1;
+}
+div.story-tile div.tile-bottom {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #39275B;
+  opacity: .5;
+}
+div.story-tile div.tile-title-holder {
+  position: absolute;
+  bottom: 0;
+}
+div.story-tile div.tile-title-holder a {
+  color: white;
+}
