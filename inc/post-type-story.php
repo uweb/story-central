@@ -142,6 +142,7 @@ class Story
         add_meta_box( 'facebook', 'Facebook', array( $this, 'facebook_cb' ), self::POST_TYPE );
         add_meta_box( 'links', 'Related Links', array( $this, 'links_cb' ), self::POST_TYPE );
         add_meta_box( 'orig_authors', 'Original Story Authors', array( $this, 'original_authors_cb' ), self::POST_TYPE );
+        add_meta_box( 'promoted', 'Promoted to top of page?', array( $this, 'promoted_cb' ), self::POST_TYPE, 'side' );
     }
 
     function gallery_cb( $post ) {
@@ -281,6 +282,15 @@ class Story
         <?php wp_editor( $authors, 'original-authors', array('textarea_name' => 'authors', 'media_buttons'=> false, 'textarea_rows' => 3, 'teeny' => true ));
     }
 
+    function promoted_cb( $post ) {
+        $promoted = (Boolean) get_post_meta( $post->ID, 'promoted', true ); ?>
+        <select name='promoted' id='promoted-to-top'>
+            <option value=0<?php if ((!$promoted) || (empty($promoted))) { ?> selected='selected'<?php } ?>>No</option>
+            <option value=1<?php if ($promoted) { ?> selected='selected'<?php } ?>>Yes</option>
+        </select>
+        <?php
+    }
+
     function save_story_cb( $post_id ) {
 
         // todo: validation
@@ -289,12 +299,14 @@ class Story
         $links    = $_POST['links'];
         $authors  = $_POST['authors'];
         $gallery  = $_POST['gallery'];
+        $promoted  = (Boolean) $_POST['promoted'];
 
         update_post_meta( $post_id, 'twitter', $twitter );
         update_post_meta( $post_id, 'facebook', $facebook );
         update_post_meta( $post_id, 'links', $links);
         update_post_meta( $post_id, 'authors', $authors);
         update_post_meta( $post_id, 'gallery', $gallery);
+        update_post_meta( $post_id, 'promoted', $promoted);
     }
 }
 
