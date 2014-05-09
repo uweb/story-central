@@ -1,10 +1,23 @@
 <?php get_header(); ?>
 
-<?php while( have_posts() ) : the_post(); ?>
 
-    <div id="story-bank-info">
-      <a class="button" href="<?php echo admin_url('post-new.php?post_type=story'); ?>">Upload stories</a>
-    </div>
+<?php
+
+  $args = array( 'category_name' => 'Blurb', 'numberposts' => '1' );
+  $postslist = get_posts( $args );
+  foreach ($postslist as $post) :  setup_postdata($post); ?> 
+  
+  <div id="story-bank-info">
+    <h1><?php the_title(); ?></h1><?php the_content(); ?>
+    <a class="button" href="<?php echo admin_url('post-new.php?post_type=story'); ?>">Upload stories</a>
+  </div>
+
+<?php endforeach; ?>
+
+
+
+
+<?php while( have_posts() ) : the_post(); ?>
 
     <div id="flex-bg">
       <div class="img-src orig"></div>
@@ -20,35 +33,43 @@
             <div class='promoted-story-tile'>
                 <div class='tile-background' style='background-image:url("<?= get_media_gallery_featured_image_url($promoted->ID )?>");' ></div>
                 <div class='tile-bottom'></div>
-                <div class='tile-title-holder'>
-                    <p><a href='<?= get_permalink($promoted->ID) ?>'><?= $promoted->post_title ?></a></p>
-                    <p class='excerpt'><?= $promoted->post_except ?></p>
-                </div>
+                <a href='<?= get_permalink($promoted->ID) ?>'><div class='tile-title-holder'>
+                    <h2><?= $promoted->post_title ?></h2>
+                    <p class='excerpt'><?= $promoted->post_excerpt ?></p>
+                </div></a>
             </div>
           
-          <?php foreach ( get_pillars() as $pillar ): ?>
 
-            <h2><?php echo $pillar->name; ?></h2>
+        <div id="feed">
+           <?php foreach ( get_pillars() as $pillar ): ?>
 
-            <?php $stories = get_stories_with_pillar($pillar, 4); ?>
+             <h2><span><?php echo $pillar->name; ?></span></h2>
 
-            <?php foreach( get_stories_with_pillar($pillar) as $post ) : setup_postdata($post); ?>
-                
-                <div class='story-tile'>
-                    <div class='tile-background' style='background-image:url("<?= get_media_gallery_featured_image_url($post->ID) ?>");' ></div>
-                    <div class='tile-bottom'></div>
-                    <div class='tile-title-holder'>
-                        <p><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
-                    </div>
-                </div>
+             <?php $stories = get_stories_with_pillar($pillar, 4); ?>
 
-            <?php endforeach; ?>
+             <?php foreach( get_stories_with_pillar($pillar) as $post ) : setup_postdata($post); ?>
+                 
+                 <?php
+                    $thumb_id = get_post_thumbnail_id();
+                    $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
+                    $thumb_url = $thumb_url_array[0];                    
+                 ?>
 
-          <?php endforeach; ?>
+                 <div class='story-tile'>
+                     <div class='tile-background' style='background-image:url(<?php echo $thumb_url; ?>);' >
+                        <div class='tile-title-holder'>
+                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                        </div>                      
+                     </div>
+                 </div>
 
+             <?php endforeach; ?>
 
+           <?php endforeach; ?>
         </div>
 
+        </div>
+ 
         <div id="secondary" class="span4 right-bar" role="complementary">
           <div class="stripe-top"></div><div class="stripe-bottom"></div>
              <div id="sidebar">
