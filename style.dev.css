@@ -151,6 +151,7 @@ div.story-tile div.tile-background {
   bottom: 0;
   right: 0;
   opacity: 1;
+  background-size: cover;
 }
 div.story-tile div.tile-bottom {
   position: absolute;
