@@ -67,6 +67,7 @@ Version: 0.1
 }
 #story-bank-info p {
   color: #fff;
+  font-weight: 600;
   font-size: 1.15em;
   line-height: 23px;
   width: 60%;
@@ -138,6 +139,44 @@ Version: 0.1
   -moz-box-shadow: none;
   box-shadow: none;
 }
+.tile-title-holder {
+  background-color: rgba(57, 39, 91, 0.8);
+  position: absolute;
+  padding: 11px 15px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  -webkit-transition: background-color 300ms ease-out;
+  -moz-transition: background-color 300ms ease-out;
+  -o-transition: background-color 300ms ease-out;
+  transition: background-color 300ms ease-out;
+}
+.tile-title-holder:hover {
+  background-color: rgba(57, 39, 91, 0.5);
+}
+.promoted-story-tile {
+  position: relative;
+  margin-top: 10px;
+}
+.promoted-story-tile .tile-title-holder {
+  padding: 11px 25px;
+}
+.promoted-story-tile h2 {
+  font-size: 1.4em;
+  margin: 10px 0 0 0;
+  font-weight: 800;
+  color: #fff;
+}
+.promoted-story-tile .tile-background {
+  width: 100%;
+  height: 335px;
+}
+.promoted-story-tile .excerpt {
+  color: #fff;
+  padding-right: 90px;
+  background: url(img/big-arrow.png) right center no-repeat;
+  margin-right: 10px;
+}
 .story-tile {
   height: 160px;
   width: 29%;
@@ -156,36 +195,38 @@ Version: 0.1
   opacity: 1;
   background-size: cover;
 }
-.story-tile .tile-title-holder {
-  background-color: rgba(57, 39, 91, 0.8);
-  position: absolute;
-  padding: 11px 15px;
-  bottom: 0;
-  right: 0;
-  left: 0;
-}
 .story-tile .tile-title-holder a {
   color: #fff;
   display: block;
   font-size: 14px;
   line-height: 18px;
-  font-weight: 800;
-}
-#main h2 {
-  clear: both;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 800;
-  font-size: 17px;
-  padding: 20px 0 20px;
+  font-weight: 700;
   position: relative;
+  text-decoration: none;
 }
-#main h2 span {
+.story-tile .tile-title-holder a:after {
+  content: "";
+  width: 10px;
+  margin: 6px;
+  position: absolute;
+  height: 10px;
+  background: url('img/lil-arrow.png') no-repeat;
+}
+#feed h2 {
+  clear: both;
+  padding: 15px 0 20px;
+  position: relative;
+  font-weight: 800;
+  text-align: center;
+}
+#feed h2 span {
   background: #fff;
   padding: 0 20px;
   position: relative;
+  text-transform: uppercase;
+  font-size: 17px;
 }
-#main h2:before {
+#feed h2:before {
   content: "";
   display: block;
   border-top: solid 1px #e7e7e7;
