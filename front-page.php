@@ -29,7 +29,7 @@
                     <div class='tile-background' style='background-image:url("<?= get_media_gallery_featured_image_url($post->ID) ?>");' ></div>
                     <div class='tile-bottom'></div>
                     <div class='tile-title-holder'>
-                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                        <p><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
                     </div>
                 </div>
 
