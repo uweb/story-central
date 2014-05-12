@@ -32,7 +32,7 @@ class Story
     );
 
     $pillar_labels = array(
-        'name'              => 'Pillars',
+            'name'              => 'Pillars',
             'singular_name'     => 'Pillar',
             'search_items'      => 'Search Pillars',
             'all_items'         => 'All Pillars',
@@ -42,7 +42,7 @@ class Story
             'update_item'       => 'Update Pillar',
             'add_new_item'      => 'Add New Pillar',
             'new_item_name'     => 'New Pillar Name',
-            'menu_name'         => 'Pillar',
+            'menu_name'         => 'Pillars',
     );
 
     register_post_type( self::POST_TYPE,
