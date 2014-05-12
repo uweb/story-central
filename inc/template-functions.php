@@ -37,6 +37,17 @@ function get_promoted_story($pillar=false) {
     return $query->posts[0];
 }
 
+//Link to source section
+//
+function the_source_link_section( $post_id ) {
+    $src = get_post_meta($post_id, 'source', true);
+    ?>
+    <div id='source-link'>
+        <a href='<?= $src ?>'>Take Me There</a>
+    </div>
+    <?php
+}
+
 
 /**
   * Twitter section html
