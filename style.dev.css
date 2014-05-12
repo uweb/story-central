@@ -51,9 +51,11 @@ Version: 0.1
 .widget.story-gallery {
   position: static;
 }
-.button {
+#content .button {
   float: none;
   display: block;
+  width: 160px;
+  margin: 0 auto;
 }
 #story-bank-info {
   width: 800px;
