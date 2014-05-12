@@ -8,12 +8,12 @@ class UW_Story_Central
         require( get_stylesheet_directory() . '/inc/template-functions.php' );
 
         add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ), 9 );
-        add_action( 'add_attachment', array( $this, 'images'), 9);
+        add_action( 'intermediate_image_sizes_advanced', array( $this, 'images'), 9);
     }
 
     function scripts()
     {
-        require( get_stylesheet_directory() . '/inc/scripts.php' );
+        require( get_stylesheet_directory() . '/setup/scripts.php' );
     }
 
     function images() {
