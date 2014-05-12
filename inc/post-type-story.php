@@ -316,10 +316,14 @@ class Story
     }
 
     function promoted_cb( $post ) {
-        $promoted = (Boolean) get_post_meta( $post->ID, 'promoted', true ); ?>
+        $promoted_str = (String) get_post_meta( $post->ID, 'promoted', true );
+        $promoted = false;
+        if ($promoted_str == 'yes') {
+            $promoted = true;
+        }?>
         <select name='promoted' id='promoted-to-top'>
-            <option value=0<?php if ((!$promoted) || (empty($promoted))) { ?> selected='selected'<?php } ?>>No</option>
-            <option value=1<?php if ($promoted) { ?> selected='selected'<?php } ?>>Yes</option>
+            <option value='no'<?php if (!$promoted) { ?> selected='selected'<?php } ?>>No</option>
+            <option value='yes'<?php if ($promoted) { ?> selected='selected'<?php } ?>>Yes</option>
         </select>
         <?php
     }
@@ -332,7 +336,7 @@ class Story
         $links    = $_POST['links'];
         $authors  = $_POST['authors'];
         $gallery  = $_POST['gallery'];
-        $promoted  = (Boolean) $_POST['promoted'];
+        $promoted  = $_POST['promoted'];
 
         update_post_meta( $post_id, 'twitter', $twitter );
         update_post_meta( $post_id, 'facebook', $facebook );

@@ -27,7 +27,8 @@ function get_promoted_story($pillar=false) {
         'post_status' => 'publish',
         'order' => 'DESC',
         'order_by' => 'date',
-        'promoted' => 1
+        'meta_key' => 'promoted',
+        'meta_value' => 'yes'
     );
     if (!empty($pillar)) {
         $args['pillar'] = $pillar->slug;
