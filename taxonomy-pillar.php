@@ -18,7 +18,7 @@
             <?php $pillar = get_term_by('slug', $pillar, 'pillar');?>
             <?php $promoted = get_promoted_story($pillar); ?>
             <div class='promoted-story-tile'>
-                <div class='tile-background' style='background-image:url("<?= get_media_gallery_featured_image_url($promoted->ID )?>");' ></div>
+                <div class='tile-background' style='background-image:url("<?= get_story_featured_image_url($promoted->ID )?>");' ></div>
                 <div class='tile-bottom'></div>
                 <div class='tile-title-holder'>
                     <p><a href='<?= get_permalink($promoted->ID) ?>'><?= $promoted->post_title ?></a></p>
@@ -27,8 +27,6 @@
             </div>
 
             <h2><?= $pillar->name ?></h2>
-
-            <?php $stories = get_stories_with_pillar($pillar, 40); ?>
 
             <?php foreach( get_stories_with_pillar($pillar) as $post ) : setup_postdata($post); ?>
                 
