@@ -508,19 +508,19 @@ ZeroClipboard.Client.prototype = {
   }
 
 
-  $('.entry-content .widget').each(function() {
+  $('.copy').each(function() {
     var $this = $(this)
-    if ( $this.attr('class').indexOf('gallery-widget') > -1 ) return
-    $this.append('<a class="copy pull-right button">Copy</a>')
+    if ( $this.attr('class').indexOf('gallery') > -1 ) return
+    $this.after('<a class="copy-link button">Copy</a>')
   });
 
 
-  $('.copy').zclip( {
+  $('.copy-link').zclip( {
 
     path: '/wp-content/themes/story/js/libs/ZeroClipboard.swf',
 
     copy : function() {
-      return $(this).siblings('.textwidget').html()
+      return $(this).siblings('.copy').html()
     },
 
     afterCopy:function(){
@@ -528,7 +528,7 @@ ZeroClipboard.Client.prototype = {
 
       _.delay( function() {
         alert.fadeOut()
-      }, 500)
+      }, 1000)
 
     }
 

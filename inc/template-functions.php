@@ -53,7 +53,7 @@ function get_the_twitter_section( $post_id )
 
   $html = '<div class="widget uw-story-social">
             <h3 class="widget-title">Twitter</h3>
-            <div class="twitter-widget">
+            <div class="twitter-widget copy">
               <div class="social-head">
                 <img src="'. get_stylesheet_directory_uri() .'/img/social.jpg">
                 <span>University of Washington</span><p>'. $twitter->tweet .'</p>
@@ -82,7 +82,7 @@ function get_the_facebook_section( $post_id )
 
   $html = '<div class="widget uw-story-social">
             <h3 class="widget-title">Facebook</h3>
-            <div class="facebook-widget">
+            <div class="facebook-widget copy">
               <div class="social-head">
                 <img src="'. get_stylesheet_directory_uri() .'/img/social.jpg">
                 <span>University of Washington</span><p>'. apply_filters('the_content', $facebook->post ) .'</p>
