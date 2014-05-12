@@ -28,8 +28,6 @@
 
             <h2><?= $pillar->name ?></h2>
 
-            <?php $stories = get_stories_with_pillar($pillar, 40); ?>
-
             <?php foreach( get_stories_with_pillar($pillar) as $post ) : setup_postdata($post); ?>
                 
                 <div class='story-tile'>
