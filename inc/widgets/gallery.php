@@ -11,7 +11,8 @@ class UW_Story_Gallery extends WP_Widget
   function UW_Story_Gallery()
   {
     add_filter( 'post_gallery', array( $this, 'uw_gallery_template' ), 11, 2 );
-    add_action('wp_ajax_get_image_assets', array( $this, 'image_assets' ) );
+    add_action( 'wp_ajax_nopriv_get_image_assets', array( $this, 'image_assets' ) );
+    add_action( 'wp_ajax_get_image_assets', array( $this, 'image_assets' ) );
   }
 
   function uw_gallery_template( $output, $attr )
@@ -21,7 +22,8 @@ class UW_Story_Gallery extends WP_Widget
 
     //TODO : change hardcoded html to the dynamic
     $title = '<h3 class="widget-title"><span>Image Assets</span></h3>';
-    return $title . $output. '<a href="'.admin_url('admin-ajax.php').'?'. http_build_query($data).'" class="download-image-assets button pull-right">Download all</a>';
+    $downloadLink = '<a href="'.admin_url('admin-ajax.php').'?'. http_build_query($data).'" class="download-image-assets button pull-right">Download all</a>';
+    return $title . $output . $downloadLink;
   }
 
   function image_assets() {

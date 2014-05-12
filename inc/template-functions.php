@@ -26,7 +26,7 @@ function get_promoted_story($pillar=false) {
         'posts_per_page' => 1,
         'post_status' => 'publish',
         'order' => 'DESC',
-        'order_by' => 'date',
+        'orderby' => 'modified',
         'meta_key' => 'promoted',
         'meta_value' => 'yes'
     );
@@ -35,6 +35,17 @@ function get_promoted_story($pillar=false) {
     }
     $query = new WP_Query($args);
     return $query->posts[0];
+}
+
+//Link to source section
+//
+function the_source_link_section( $post_id ) {
+    $src = get_post_meta($post_id, 'source', true);
+    ?>
+    <div id='source-link'>
+        <a href='<?= $src ?>'>Take Me There</a>
+    </div>
+    <?php
 }
 
 
@@ -53,7 +64,7 @@ function get_the_twitter_section( $post_id )
 
   $html = '<div class="widget uw-story-social">
             <h3 class="widget-title">Twitter</h3>
-            <div class="twitter-widget">
+            <div class="twitter-widget copy">
               <div class="social-head">
                 <div class="handle"><img src="'. get_stylesheet_directory_uri() .'/img/social.jpg">
                 <span>University of Washington</span></div><p>'. $twitter->tweet .'</p>
@@ -82,7 +93,7 @@ function get_the_facebook_section( $post_id )
 
   $html = '<div class="widget uw-story-social">
             <h3 class="widget-title">Facebook</h3>
-            <div class="facebook-widget">
+            <div class="facebook-widget copy">
               <div class="social-head">
                 <div class="handle"><img src="'. get_stylesheet_directory_uri() .'/img/social.jpg">
                 <span>University of Washington</span></div>'. apply_filters('the_content', $facebook->post ) .'
