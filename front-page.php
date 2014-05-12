@@ -56,7 +56,7 @@
                  ?>
 
                  <div class='story-tile'>
-                     <div class='tile-background' style='background-image:url(<?php echo $thumb_url; ?>);' >
+                     <div class='tile-background' style='background-image:url(<?= $thumb_url; ?>);' >
                         <div class='tile-title-holder'>
                             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                         </div>                      

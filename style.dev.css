@@ -45,8 +45,15 @@ Version: 0.1
 #footerBG {
   background-color: #fff;
 }
-#branding {
+.home #branding {
   background: none !important;
+}
+.widget.story-gallery {
+  position: static;
+}
+.button {
+  float: none;
+  display: block;
 }
 #story-bank-info {
   width: 800px;
