@@ -32,7 +32,7 @@ class Story
     );
 
     $pillar_labels = array(
-        'name'              => 'Pillars',
+            'name'              => 'Pillars',
             'singular_name'     => 'Pillar',
             'search_items'      => 'Search Pillars',
             'all_items'         => 'All Pillars',
@@ -42,7 +42,7 @@ class Story
             'update_item'       => 'Update Pillar',
             'add_new_item'      => 'Add New Pillar',
             'new_item_name'     => 'New Pillar Name',
-            'menu_name'         => 'Pillar',
+            'menu_name'         => 'Pillars',
     );
 
     register_post_type( self::POST_TYPE,
@@ -142,6 +142,7 @@ class Story
         add_meta_box( 'facebook', 'Facebook', array( $this, 'facebook_cb' ), self::POST_TYPE );
         add_meta_box( 'links', 'Related Links', array( $this, 'links_cb' ), self::POST_TYPE );
         add_meta_box( 'orig_authors', 'Original Story Authors', array( $this, 'original_authors_cb' ), self::POST_TYPE );
+        add_meta_box( 'source', 'Original Story Link', array( $this, 'source_cb' ), self::POST_TYPE );
         add_meta_box( 'promoted', 'Promoted to top of page?', array( $this, 'promoted_cb' ), self::POST_TYPE, 'side' );
     }
 
@@ -316,11 +317,23 @@ class Story
     }
 
     function promoted_cb( $post ) {
-        $promoted = (Boolean) get_post_meta( $post->ID, 'promoted', true ); ?>
+        $promoted_str = (String) get_post_meta( $post->ID, 'promoted', true );
+        $promoted = false;
+        if ($promoted_str == 'yes') {
+            $promoted = true;
+        }?>
         <select name='promoted' id='promoted-to-top'>
-            <option value=0<?php if ((!$promoted) || (empty($promoted))) { ?> selected='selected'<?php } ?>>No</option>
-            <option value=1<?php if ($promoted) { ?> selected='selected'<?php } ?>>Yes</option>
+            <option value='no'<?php if (!$promoted) { ?> selected='selected'<?php } ?>>No</option>
+            <option value='yes'<?php if ($promoted) { ?> selected='selected'<?php } ?>>Yes</option>
         </select>
+        <?php
+    }
+
+    function source_cb( $post ) {
+        $source = (String) get_post_meta($post->ID, 'source', true);
+        ?>
+        <label for='source'>URL</label>
+        <input type='text' name='source' value='<?= $source ?>' />
         <?php
     }
 
@@ -332,13 +345,15 @@ class Story
         $links    = $_POST['links'];
         $authors  = $_POST['authors'];
         $gallery  = $_POST['gallery'];
-        $promoted  = (Boolean) $_POST['promoted'];
+        $source   = $_POST['source'];
+        $promoted = $_POST['promoted'];
 
         update_post_meta( $post_id, 'twitter', $twitter );
         update_post_meta( $post_id, 'facebook', $facebook );
         update_post_meta( $post_id, 'links', $links);
         update_post_meta( $post_id, 'authors', $authors);
         update_post_meta( $post_id, 'gallery', $gallery);
+        update_post_meta( $post_id, 'source', $source);
         update_post_meta( $post_id, 'promoted', $promoted);
     }
 }
