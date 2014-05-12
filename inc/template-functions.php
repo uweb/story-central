@@ -26,7 +26,7 @@ function get_promoted_story($pillar=false) {
         'posts_per_page' => 1,
         'post_status' => 'publish',
         'order' => 'DESC',
-        'order_by' => 'date',
+        'orderby' => 'modified',
         'meta_key' => 'promoted',
         'meta_value' => 'yes'
     );
