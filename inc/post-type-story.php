@@ -142,6 +142,7 @@ class Story
         add_meta_box( 'facebook', 'Facebook', array( $this, 'facebook_cb' ), self::POST_TYPE );
         add_meta_box( 'links', 'Related Links', array( $this, 'links_cb' ), self::POST_TYPE );
         add_meta_box( 'orig_authors', 'Original Story Authors', array( $this, 'original_authors_cb' ), self::POST_TYPE );
+        add_meta_box( 'source', 'Original Story Link', array( $this, 'source_cb' ), self::POST_TYPE );
         add_meta_box( 'promoted', 'Promoted to top of page?', array( $this, 'promoted_cb' ), self::POST_TYPE, 'side' );
     }
 
@@ -328,6 +329,14 @@ class Story
         <?php
     }
 
+    function source_cb( $post ) {
+        $source = (String) get_post_meta($post->ID, 'source', true);
+        ?>
+        <label for='source'>URL</label>
+        <input type='text' name='source' value='<?= $source ?>' />
+        <?php
+    }
+
     function save_story_cb( $post_id ) {
 
         // todo: validation
@@ -336,13 +345,15 @@ class Story
         $links    = $_POST['links'];
         $authors  = $_POST['authors'];
         $gallery  = $_POST['gallery'];
-        $promoted  = $_POST['promoted'];
+        $source   = $_POST['source'];
+        $promoted = $_POST['promoted'];
 
         update_post_meta( $post_id, 'twitter', $twitter );
         update_post_meta( $post_id, 'facebook', $facebook );
         update_post_meta( $post_id, 'links', $links);
         update_post_meta( $post_id, 'authors', $authors);
         update_post_meta( $post_id, 'gallery', $gallery);
+        update_post_meta( $post_id, 'source', $source);
         update_post_meta( $post_id, 'promoted', $promoted);
     }
 }
