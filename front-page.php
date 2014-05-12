@@ -45,9 +45,7 @@
 
              <h2><span><?php echo $pillar->name; ?></span></h2>
 
-             <?php $stories = get_stories_with_pillar($pillar, 3); ?>
-
-             <?php foreach( get_stories_with_pillar($pillar) as $post ) : setup_postdata($post); ?>
+             <?php foreach( get_stories_with_pillar($pillar, 3) as $post ) : setup_postdata($post); ?>
                  
                  <?php
                     $thumb_id = get_post_thumbnail_id();
