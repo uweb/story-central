@@ -154,8 +154,8 @@ function story_section( $html )
 }
 
 /*
- * Section for getting the media gallery in array of IDs form
- * TODO: Make this something that creates HTML
+ * The following section is for getting image assets, in one form or another
+ * 
  */
 //this function is useless until we are returning HTML to print out
 function the_media_gallery_section( $post_id )
@@ -188,5 +188,11 @@ function get_media_gallery_featured_image_url( $post_id ) {
         $image_id = $media_arr[0];
         $url = wp_get_attachment_url($image_id);
     }
+    return $url;
+}
+
+function get_story_featured_image_url( $post_id ) {
+    $image_id = get_post_thumbnail_id( $post_id);
+    $url = wp_get_attachment_image_src( $image_id );
     return $url;
 }

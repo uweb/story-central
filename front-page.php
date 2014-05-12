@@ -31,7 +31,7 @@
         <div id="main" class="span8">
             <?php $promoted = get_promoted_story(); ?>
             <div class='promoted-story-tile'>
-                <div class='tile-background' style='background-image:url("<?= get_media_gallery_featured_image_url($promoted->ID )?>");' ></div>
+                <div class='tile-background' style='background-image:url("<?= get_story_featured_image_url($promoted->ID )?>");' ></div>
                 <div class='tile-bottom'></div>
                 <a href='<?= get_permalink($promoted->ID) ?>'><div class='tile-title-holder'>
                     <h2><?= $promoted->post_title ?></h2>
