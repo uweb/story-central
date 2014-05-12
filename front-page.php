@@ -1,23 +1,18 @@
 <?php get_header(); ?>
 
 
-<?php
+<?php while( have_posts() ) : the_post(); ?>
 
-  $args = array( 'category_name' => 'Blurb', 'numberposts' => '1' );
-  $postslist = get_posts( $args );
-  foreach ($postslist as $post) :  setup_postdata($post); ?> 
-  
   <div id="story-bank-info">
     <h1><?php the_title(); ?></h1><?php the_content(); ?>
     <a class="button" href="<?php echo admin_url('post-new.php?post_type=story'); ?>">Upload stories</a>
   </div>
 
-<?php endforeach; ?>
+<?php endwhile; ?>
 
 
 
 
-<?php while( have_posts() ) : the_post(); ?>
 
     <div id="flex-bg">
       <div class="img-src orig"></div>
@@ -38,7 +33,7 @@
                     <p class='excerpt'><?= $promoted->post_excerpt ?></p>
                 </div></a>
             </div>
-          
+
 
         <div id="feed">
            <?php foreach ( get_pillars() as $pillar ): ?>
@@ -46,18 +41,18 @@
              <h2><span><?php echo $pillar->name; ?></span></h2>
 
              <?php foreach( get_stories_with_pillar($pillar, 3) as $post ) : setup_postdata($post); ?>
-                 
+
                  <?php
                     $thumb_id = get_post_thumbnail_id();
                     $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
-                    $thumb_url = $thumb_url_array[0];                    
+                    $thumb_url = $thumb_url_array[0];
                  ?>
 
                  <div class='story-tile'>
                      <div class='tile-background' style='background-image:url(<?php echo $thumb_url; ?>);' >
                         <div class='tile-title-holder'>
                             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                        </div>                      
+                        </div>
                      </div>
                  </div>
 
@@ -67,7 +62,7 @@
         </div>
 
         </div>
- 
+
         <div id="secondary" class="span4 right-bar" role="complementary">
           <div class="stripe-top"></div><div class="stripe-bottom"></div>
              <div id="sidebar">
@@ -80,8 +75,5 @@
       </div><!-- .show-grid -->
     </div><!-- #content -->
   </div><!-- #primary -->
-
-  <?php endwhile; ?>
-
 
 <?php get_footer(); ?>
