@@ -39,6 +39,7 @@ class Story_Images extends UW_Images
 
   }
 
+  parent::UW_Images();
 }
 
 new Story_Images;
