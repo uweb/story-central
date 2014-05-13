@@ -161,6 +161,9 @@ Version: 0.1
   height: auto;
   line-height: 16px;
 }
+div.story-section {
+  margin-bottom: 10px;
+}
 #main .widget.twitter-feed-widget,
 #main .widget.siteorigin-panels-gallery-widget {
   -webkit-box-shadow: none ;

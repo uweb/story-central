@@ -40,12 +40,17 @@ function get_promoted_story($pillar=false) {
 //Link to source section
 //
 function the_source_link_section( $post_id ) {
+    echo get_the_source_link_section( $post_id );
+}
+
+function get_the_source_link_section( $post_id ) {
     $src = get_post_meta($post_id, 'source', true);
-    ?>
+    $html = "
     <div id='source-link'>
-        <a class="button" href='<?= $src ?>'>Original article</a>
+        <a class='button' href='" . $src . "'>Original article</a>
     </div>
-    <?php
+    ";
+    return story_section($html);
 }
 
 
@@ -179,11 +184,7 @@ function get_the_featured_image_section( $post_id ) {
 
 function story_section( $html )
 {
-  return '<div class="block-row">
-          <div class="block-full first-block last-block">
-            ' . $html . '
-          </div>
-        </div>';
+  return '<div class="story-section">' . $html . '</div>';
 }
 
 /*
