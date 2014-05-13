@@ -155,6 +155,27 @@ function get_the_original_authors_section( $post_id )
 
 }
 
+//
+//Featured image section
+//
+function the_featured_image_section( $post_id ) {
+    echo get_the_featured_image_section( $post_id );
+}
+
+function get_the_featured_image_section( $post_id ) {
+    $url = get_story_featured_image_url($post_id, false);
+    if (empty($url)){
+        return '';
+    }
+    else {
+        $url_attr = "url('" . $url . "');";
+        $html = '<div class="promoted-story-tile">
+                    <div class="tile-background" style="background-image:' . $url_attr . '" ></div>
+                </div>';
+    }
+    return story_section($html);
+}
+
 
 function story_section( $html )
 {
