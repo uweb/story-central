@@ -1,4 +1,5 @@
 <?php
-foreach ( $UW_Images->IMAGE_SIZES as $name=>$image ) {
-    unset($name);
+$sizes = get_intermediate_image_sizes();
+foreach ( $sizes as $size ) {   // just nuke all sizes
+    unset($size);
 }
