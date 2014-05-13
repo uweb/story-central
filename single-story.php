@@ -11,6 +11,7 @@
 
 				<h1 class="entry-title"><?php the_title() ?></h1>
 
+                <?php the_featured_image_section( get_the_ID() ); ?>
 
         <div class="block-row">
     			<?php the_content(); ?>
