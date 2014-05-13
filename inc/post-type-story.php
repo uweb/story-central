@@ -141,7 +141,7 @@ class Story
         add_meta_box( 'twitter', 'Twitter', array( $this, 'twitter_cb' ), self::POST_TYPE );
         add_meta_box( 'facebook', 'Facebook', array( $this, 'facebook_cb' ), self::POST_TYPE );
         add_meta_box( 'links', 'Related Links', array( $this, 'links_cb' ), self::POST_TYPE );
-        add_meta_box( 'orig_authors', 'Original Story Authors', array( $this, 'original_authors_cb' ), self::POST_TYPE );
+        add_meta_box( 'orig_authors', 'Contact', array( $this, 'original_authors_cb' ), self::POST_TYPE );
         add_meta_box( 'source', 'Original Story Link', array( $this, 'source_cb' ), self::POST_TYPE );
         add_meta_box( 'promoted', 'Promoted to top of page?', array( $this, 'promoted_cb' ), self::POST_TYPE, 'side' );
     }
