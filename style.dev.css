@@ -57,6 +57,9 @@ Version: 0.1
   width: 160px;
   margin: 0 auto;
 }
+.block-full {
+  margin-top: 35px;
+}
 #story-bank-info {
   width: 800px;
   margin: 60px auto 50px;
@@ -100,6 +103,7 @@ Version: 0.1
 .widget.uw-story-social div.facebook-widget div.social-head {
   border: 1px solid #c4cde0;
   padding: 20px 20px 0;
+  margin-bottom: 10px;
 }
 .widget.uw-story-social div.facebook-widget div.social-head .handle {
   border-bottom: 1px solid #e5e5e5;
@@ -118,7 +122,6 @@ Version: 0.1
 }
 .widget.uw-story-social div.facebook-widget div.social-head p img {
   width: 100%;
-  margin: 20px 0 0;
   float: none;
 }
 .widget.uw-story-social div.twitter-widget div.social-head {

@@ -43,7 +43,7 @@ function the_source_link_section( $post_id ) {
     $src = get_post_meta($post_id, 'source', true);
     ?>
     <div id='source-link'>
-        <a href='<?= $src ?>'>Take Me There</a>
+        <a class="button" href='<?= $src ?>'>Original article</a>
     </div>
     <?php
 }
