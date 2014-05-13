@@ -137,12 +137,12 @@ class Story
 
 
     function add_meta_boxes( $post ) {
+        add_meta_box( 'source', 'Original Story Link', array( $this, 'source_cb' ), self::POST_TYPE );
         add_meta_box( 'gallery', 'Gallery', array( $this, 'gallery_cb' ), self::POST_TYPE );
         add_meta_box( 'twitter', 'Twitter', array( $this, 'twitter_cb' ), self::POST_TYPE );
         add_meta_box( 'facebook', 'Facebook', array( $this, 'facebook_cb' ), self::POST_TYPE );
         add_meta_box( 'links', 'Related Links', array( $this, 'links_cb' ), self::POST_TYPE );
-        add_meta_box( 'orig_authors', 'Contact', array( $this, 'original_authors_cb' ), self::POST_TYPE );
-        add_meta_box( 'source', 'Original Story Link', array( $this, 'source_cb' ), self::POST_TYPE );
+        add_meta_box( 'orig_authors', 'Contacts', array( $this, 'original_authors_cb' ), self::POST_TYPE );
         add_meta_box( 'promoted', 'Promoted to top of page?', array( $this, 'promoted_cb' ), self::POST_TYPE, 'side' );
     }
 
@@ -311,7 +311,7 @@ class Story
     function original_authors_cb( $post ) {
         $authors = (String) get_post_meta( $post->ID, 'authors', true ); ?>
 
-        <label  for="authors">Original author(s) name and contact information: </label>
+        <label  for="authors">Author(s) to contact for more information: </label>
 
         <?php wp_editor( $authors, 'original-authors', array('textarea_name' => 'authors', 'media_buttons'=> false, 'textarea_rows' => 3, 'teeny' => true ));
     }

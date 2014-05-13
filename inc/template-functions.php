@@ -147,7 +147,7 @@ function get_the_original_authors_section( $post_id )
   if ( ! $authors ) return;
 
   $html = '<div class="widget">
-            <h3 class="widget-title">Original authors</h3>
+            <h3 class="widget-title">Contacts</h3>
             <p>'. $authors .'</p>
           </div>';
 
