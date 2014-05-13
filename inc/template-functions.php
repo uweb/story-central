@@ -199,7 +199,12 @@ function the_media_gallery_section( $post_id )
 function get_the_media_gallery_section( $post_id )
 {
     $media = (String) get_post_meta($post_id, 'gallery', true);
-    $html = '<div class="widget story-gallery">' . do_shortcode('[gallery ids="'. $media .'"]') . '</div>';
+    if (empty($media)) {
+        $html = '<div class="widget"><h3 class="widget-title">Image Assets</h3><p class="no-gallery">no images uploaded...</p></div>';
+    }
+    else {
+        $html = '<div class="widget story-gallery">' . do_shortcode('[gallery ids="'. $media .'"]') . '</div>';
+    }
     return story_section( $html );
 }
 
