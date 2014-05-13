@@ -12,7 +12,7 @@ module.exports = function(grunt) {
         ],
         custom: [
           "js/background.js",
-          "js/copypasta.js",
+          //"js/copypasta.js",
           "js/gallery.js"
         ],
         src: [ '<%= concat.dist.libraries %>', '<%= concat.dist.custom %>' ],
