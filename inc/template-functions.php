@@ -43,7 +43,7 @@ function the_source_link_section( $post_id ) {
     $src = get_post_meta($post_id, 'source', true);
     ?>
     <div id='source-link'>
-        <a href='<?= $src ?>'>Take Me There</a>
+        <a class="button" href='<?= $src ?>'>Original article</a>
     </div>
     <?php
 }
@@ -66,8 +66,8 @@ function get_the_twitter_section( $post_id )
             <h3 class="widget-title">Twitter</h3>
             <div class="twitter-widget copy">
               <div class="social-head">
-                <img src="'. get_stylesheet_directory_uri() .'/img/social.jpg">
-                <span>University of Washington</span><p>'. $twitter->tweet .'</p>
+                <div class="handle"><img src="'. get_stylesheet_directory_uri() .'/img/social.jpg">
+                <span>University of Washington</span></div><p>'. $twitter->tweet .'</p>
               </div>
            </div>
           </div>';
@@ -95,8 +95,8 @@ function get_the_facebook_section( $post_id )
             <h3 class="widget-title">Facebook</h3>
             <div class="facebook-widget copy">
               <div class="social-head">
-                <img src="'. get_stylesheet_directory_uri() .'/img/social.jpg">
-                <span>University of Washington</span><p>'. apply_filters('the_content', $facebook->post ) .'</p>
+                <div class="handle"><img src="'. get_stylesheet_directory_uri() .'/img/social.jpg">
+                <span>University of Washington</span></div>'. apply_filters('the_content', $facebook->post ) .'
               </div>
             </div>
           </div>';

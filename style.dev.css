@@ -57,6 +57,9 @@ Version: 0.1
   width: 160px;
   margin: 0 auto;
 }
+.block-full {
+  margin-top: 35px;
+}
 #story-bank-info {
   width: 800px;
   margin: 60px auto 50px;
@@ -97,6 +100,16 @@ Version: 0.1
 .widget .widget-title:after {
   background: url();
 }
+.widget.uw-story-social div.facebook-widget div.social-head {
+  border: 1px solid #c4cde0;
+  padding: 20px 20px 0;
+  margin-bottom: 10px;
+}
+.widget.uw-story-social div.facebook-widget div.social-head .handle {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+}
 .widget.uw-story-social div.facebook-widget div.social-head img {
   height: 32px;
   width: 32px;
@@ -107,15 +120,46 @@ Version: 0.1
   font-size: 12px;
   font-weight: bold;
 }
+.widget.uw-story-social div.facebook-widget div.social-head p img {
+  width: 100%;
+  float: none;
+}
+.widget.uw-story-social div.twitter-widget div.social-head {
+  display: block;
+  max-width: 99%;
+  min-width: 220px;
+  padding: 17px 17px 0 17px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 10px 0px;
+  border-color: #eeeeee #dddddd #bbbbbb;
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px;
+}
+.widget.uw-story-social div.twitter-widget div.social-head p {
+  color: #292f33;
+  font: 18px/24px Georgia, "Times New Roman", Palatino, serif;
+}
+.widget.uw-story-social div.twitter-widget div.social-head .handle {
+  margin-bottom: 20px;
+}
 .widget.uw-story-social div.twitter-widget div.social-head img {
-  height: 24px;
-  width: 24px;
-  margin-right: 5px;
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
 }
 .widget.uw-story-social div.twitter-widget div.social-head span {
-  color: #39275b;
-  font-size: 14x;
+  color: #292f33;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  font-variant: normal;
   font-weight: bold;
+  height: auto;
+  line-height: 16px;
 }
 #main .widget.twitter-feed-widget,
 #main .widget.siteorigin-panels-gallery-widget {
