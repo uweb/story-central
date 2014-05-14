@@ -55,7 +55,8 @@ class Story
           'show_in_nav_menus' => true,
           'register_meta_box_cb' => array( $this, 'add_meta_boxes' ),
           'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ),
-          'taxonomies' => array('post_tag')
+          'yarpp_support' => true,
+          'taxonomies' => array('post_tag'),
         )
     );
 
