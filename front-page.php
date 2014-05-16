@@ -5,7 +5,6 @@
 
   <div id="story-bank-info">
     <h1><?php the_title(); ?></h1><?php the_content(); ?>
-    <a class="button" href="<?php echo admin_url('post-new.php?post_type=story'); ?>">Upload stories</a>
   </div>
 
 <?php endwhile; ?>
@@ -62,6 +61,7 @@
              <div id="sidebar">
               <?php if (is_active_sidebar('homepage-sidebar') && is_front_page() ||
                         is_active_sidebar('homepage-sidebar') && is_home() ) : dynamic_sidebar('homepage-sidebar'); else: dynamic_sidebar('sidebar'); endif; ?>
+               <a class="button" href="<?php echo admin_url('post-new.php?post_type=story'); ?>">Upload stories</a>
              </div><!-- #sidebar -->
         </div><!-- #secondary -->
 
