@@ -44,7 +44,7 @@ function the_abstract_section( $post_id ) {
 }
 
 function get_the_abstract_section( $post_id ) {
-    $abstract = get_post_meta($post_id, 'abstract', true);
+    $abstract = get_abstract_text($post_id);
     if (!empty($abstract)){
         $html = "
             <div class='widget uw-story-central'>
@@ -55,6 +55,11 @@ function get_the_abstract_section( $post_id ) {
     }
     return '';
 }
+
+function get_abstract_text( $post_id ) {
+    return get_post_meta($post_id, 'abstract', true);
+}
+
 
 //Link to source section
 //
