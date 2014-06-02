@@ -22,7 +22,7 @@
                 <div class='tile-bottom'></div>
                 <a href='<?= get_permalink($promoted->ID) ?>'><div class='tile-title-holder'>
                     <h2><?= $promoted->post_title ?></h2>
-                    <p class='excerpt'><?= get_abstract_text($promoted->ID) ?></p>
+                    <p class='abstract'><?= get_abstract_text($promoted->ID) ?></p>
                 </div></a>
             </div>
 

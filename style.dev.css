@@ -228,7 +228,7 @@ div.story-section {
   height: 335px;
   background-size: cover;
 }
-.promoted-story-tile .excerpt {
+.promoted-story-tile .abstract {
   color: #fff;
   padding-right: 90px;
   background: url(img/big-arrow.png) right center no-repeat;
