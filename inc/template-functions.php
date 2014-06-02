@@ -46,7 +46,11 @@ function the_abstract_section( $post_id ) {
 function get_the_abstract_section( $post_id ) {
     $abstract = get_post_meta($post_id, 'abstract', true);
     if (!empty($abstract)){
-        $html = "<div id='abstract-section'>" . $abstract . "</div>";
+        $html = "
+            <div class='widget uw-story-central'>
+                <h3 class='widget-title'>Abstract</h3>
+                <div id='abstract-section'>" . $abstract . "</div>
+            </div>";
         return story_section($html);
     }
     return '';
