@@ -1,5 +1,2 @@
 <?php
-$sizes = get_intermediate_image_sizes();
-foreach ( $sizes as $size ) {   // just nuke all sizes
-    unset($size);
-}
+//not unsetting images anymore.  Big images need massaging to work properly in gallery
