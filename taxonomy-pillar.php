@@ -20,10 +20,10 @@
             <div class='promoted-story-tile'>
                 <div class='tile-background' style='background-image:url("<?= get_story_featured_image_url($promoted->ID, true )?>");' ></div>
                 <div class='tile-bottom'></div>
-                <div class='tile-title-holder'>
-                    <p><a href='<?= get_permalink($promoted->ID) ?>'><?= $promoted->post_title ?></a></p>
-                    <p class='excerpt'><?= $promoted->post_except ?></p>
-                </div>
+                <a href='<?= get_permalink($promoted->ID) ?>'><div class='tile-title-holder'>
+                    <h2><?= $promoted->post_title ?></h2>
+                    <p class='excerpt'><?= $promoted->post_excerpt ?></p>
+                </div></a>
             </div>
 
             <h2><?= $pillar->name ?></h2>
