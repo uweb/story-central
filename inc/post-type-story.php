@@ -139,6 +139,7 @@ class Story
 
 
     function add_meta_boxes( $post ) {
+        add_meta_box( 'abstract', 'Abstract', array( $this, 'abstract_cb' ), self::POST_TYPE );
         add_meta_box( 'source', 'Original Story Link', array( $this, 'source_cb' ), self::POST_TYPE );
         add_meta_box( 'gallery', 'Gallery', array( $this, 'gallery_cb' ), self::POST_TYPE );
         add_meta_box( 'twitter', 'Twitter', array( $this, 'twitter_cb' ), self::POST_TYPE );
@@ -146,6 +147,11 @@ class Story
         add_meta_box( 'links', 'Related Links', array( $this, 'links_cb' ), self::POST_TYPE );
         add_meta_box( 'orig_authors', 'Contacts', array( $this, 'original_authors_cb' ), self::POST_TYPE );
         add_meta_box( 'promoted', 'Promoted to top of page?', array( $this, 'promoted_cb' ), self::POST_TYPE, 'side' );
+    }
+
+    function abstract_cb( $post ){
+        $abstract = (String) get_post_meta($post->ID, 'abstract', true);
+        wp_editor($abstract, 'story-abstract', array('textarea_name' => 'abstract', 'media_buttons' => false, 'textarea_rows' => 3, 'teeny' => true));
     }
 
     function gallery_cb( $post ) {
@@ -342,6 +348,7 @@ class Story
     function save_story_cb( $post_id ) {
 
         // todo: validation
+        $abstract  = $_POST['abstract'];
         $twitter  = $_POST['twitter'];
         $facebook = $_POST['facebook'];
         $links    = $_POST['links'];
@@ -350,6 +357,7 @@ class Story
         $source   = $_POST['source'];
         $promoted = $_POST['promoted'];
 
+        update_post_meta( $post_id, 'abstract', $abstract );
         update_post_meta( $post_id, 'twitter', $twitter );
         update_post_meta( $post_id, 'facebook', $facebook );
         update_post_meta( $post_id, 'links', $links);
