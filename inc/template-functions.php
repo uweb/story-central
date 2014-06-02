@@ -37,6 +37,21 @@ function get_promoted_story($pillar=false) {
     return $query->posts[0];
 }
 
+//"Abstract" section
+//
+function the_abstract_section( $post_id ) {
+    echo get_the_abstract_section( $post_id );
+}
+
+function get_the_abstract_section( $post_id ) {
+    $abstract = get_post_meta($post_id, 'abstract', true);
+    if (!empty($abstract)){
+        $html = "<div id='abstract-section'>" . $abstract . "</div>";
+        return story_section($html);
+    }
+    return '';
+}
+
 //Link to source section
 //
 function the_source_link_section( $post_id ) {
