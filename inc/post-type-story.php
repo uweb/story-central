@@ -141,6 +141,7 @@ class Story
     function add_meta_boxes( $post ) {
         add_meta_box( 'source', 'Original Story Link', array( $this, 'source_cb' ), self::POST_TYPE );
         add_meta_box( 'gallery', 'Gallery', array( $this, 'gallery_cb' ), self::POST_TYPE );
+        add_meta_box( 'video', 'Video', array( $this, 'video_cb' ), self::POST_TYPE );
         add_meta_box( 'twitter', 'Twitter', array( $this, 'twitter_cb' ), self::POST_TYPE );
         add_meta_box( 'facebook', 'Facebook', array( $this, 'facebook_cb' ), self::POST_TYPE );
         add_meta_box( 'links', 'Related Links', array( $this, 'links_cb' ), self::POST_TYPE );
@@ -335,8 +336,18 @@ class Story
         $source = (String) get_post_meta($post->ID, 'source', true);
         ?>
         <label for='source'>URL</label>
-        <input type='text' name='source' value='<?= $source ?>' />
+        <input size="100%" type='text' name='source' value='<?= $source ?>' />
         <?php
+    }
+
+    function video_cb( $post ) {
+      $video_url = (String) get_post_meta( $post->ID, 'video', true );
+      ?>
+
+      <label for="video">Video URL: </label>
+      <input name="video" type="text" size="100%" value="<?php echo $video_url; ?>" />
+      <p><a target="_blank" title="Embedable urls" href="http://codex.wordpress.org/Embeds#Okay.2C_So_What_Sites_Can_I_Embed_From.3F">List of compatible URLs</a></p>
+      <?php
     }
 
     function save_story_cb( $post_id ) {
@@ -348,6 +359,7 @@ class Story
         $authors  = $_POST['authors'];
         $gallery  = $_POST['gallery'];
         $source   = $_POST['source'];
+        $video    = $_POST['video'];
         $promoted = $_POST['promoted'];
 
         update_post_meta( $post_id, 'twitter', $twitter );
@@ -356,6 +368,7 @@ class Story
         update_post_meta( $post_id, 'authors', $authors);
         update_post_meta( $post_id, 'gallery', $gallery);
         update_post_meta( $post_id, 'source', $source);
+        update_post_meta( $post_id, 'video', $video );
         update_post_meta( $post_id, 'promoted', $promoted);
     }
 }

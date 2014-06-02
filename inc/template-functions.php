@@ -182,6 +182,23 @@ function get_the_featured_image_section( $post_id ) {
 }
 
 
+function the_video_embed( $post_id )
+{
+  echo get_the_video_embed( $post_id );
+}
+
+function get_the_video_embed( $post_id )
+{
+  $video_url = (String) get_post_meta( $post_id, 'video', true );
+  $video = wp_oembed_get( $video_url );
+  $html = '<div class="widget">
+            <h3 class="widget-title">Video</h3>
+            <p> ' . $video . '</p>
+          </div>';
+
+  return story_section( $html );
+}
+
 function story_section( $html )
 {
   return '<div class="story-section">' . $html . '</div>';
