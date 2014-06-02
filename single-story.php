@@ -13,6 +13,8 @@
 
                 <?php the_featured_image_section( get_the_ID() ); ?>
 
+                <?php the_abstract_section( get_the_ID() ); ?>
+
         <div class="block-row">
     			<?php the_content(); ?>
         </div>
