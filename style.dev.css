@@ -226,6 +226,7 @@ div.story-section {
 .promoted-story-tile .tile-background {
   width: 100%;
   height: 335px;
+  background-size: cover;
 }
 .promoted-story-tile .excerpt {
   color: #fff;
