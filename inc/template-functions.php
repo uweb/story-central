@@ -191,18 +191,16 @@ function the_featured_image_section( $post_id ) {
     echo get_the_featured_image_section( $post_id );
 }
 
-function get_the_featured_image_section( $post_id ) {
-    $url = get_story_featured_image_url($post_id, false);
-    if (empty($url)){
-        return '';
-    }
-    else {
-        $url_attr = "url('" . $url . "');";
-        $html = '<div class="promoted-story-tile">
-                    <div class="tile-background" style="background-image:' . $url_attr . '" ></div>
-                </div>';
-    }
-    return story_section($html);
+function get_the_featured_image_section( $post_id )
+{
+    $post = get_post( $post_id );
+    $url  = get_story_featured_image_url($post_id, false);
+
+    $html = "<div class=\"promoted-story-tile\">
+                <img src=\"$url\" />
+            </div>";
+
+    return ! empty( $url ) ? story_section($html) : '';
 }
 
 
@@ -267,7 +265,8 @@ function get_media_gallery_featured_image_url( $post_id, $backup=false ) {
     if ($backup) {
         $url = get_stylesheet_directory_uri() . '/img/social.jpg';                      //can set a default story image here
     }
-    if (!empty($media_arr)){
+    if ( !empty($media_arr) )
+    {
         $image_id = $media_arr[0];
         $url = wp_get_attachment_url($image_id);
     }
@@ -276,11 +275,11 @@ function get_media_gallery_featured_image_url( $post_id, $backup=false ) {
 
 function get_story_featured_image_url( $post_id, $backup=false ) {
     $image_id = get_post_thumbnail_id( $post_id );
-    if (!empty($image_id)) {
+    if ( !empty($image_id) )
+    {
         $url_arr = wp_get_attachment_image_src( $image_id, 'full' );
         $url = $url_arr[0];
-    }
-    else {
+    } else {
         $url = get_media_gallery_featured_image_url( $post_id, $backup );
     }
     return $url;
