@@ -239,13 +239,8 @@ function the_media_gallery_section( $post_id )
 function get_the_media_gallery_section( $post_id )
 {
     $media = (String) get_post_meta($post_id, 'gallery', true);
-    if (empty($media)) {
-        $html = '<div class="widget"><h3 class="widget-title">Image Assets</h3><p class="no-gallery">no images uploaded...</p></div>';
-    }
-    else {
-        $html = '<div class="widget story-gallery">' . do_shortcode('[gallery ids="'. $media .'"]') . '</div>';
-    }
-    return story_section( $html );
+    $html = ! empty( $media ) ? '<div class="widget story-gallery">' . do_shortcode('[gallery ids="'. $media .'"]') . '</div>' : '';
+    return $html;
 }
 
 //this simply returns the array of attachment IDs
@@ -274,13 +269,10 @@ function get_media_gallery_featured_image_url( $post_id, $backup=false ) {
 }
 
 function get_story_featured_image_url( $post_id, $backup=false ) {
-    $image_id = get_post_thumbnail_id( $post_id );
-    if ( !empty($image_id) )
-    {
-        $url_arr = wp_get_attachment_image_src( $image_id, 'full' );
-        $url = $url_arr[0];
-    } else {
-        $url = get_media_gallery_featured_image_url( $post_id, $backup );
-    }
+
+    $url =  ( has_post_thumbnail( $post_id ) ) ?
+              reset( wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ) , 'full' ) ) :
+              get_media_gallery_featured_image_url( $post_id, $backup );
+
     return $url;
 }
