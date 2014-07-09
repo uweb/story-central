@@ -35,6 +35,8 @@
 
       <?php endwhile; ?>
 
+			<?php comments_template(); ?>
+
       </div>
 
 			<div id="secondary" class="span4 right-bar" role="complementary">

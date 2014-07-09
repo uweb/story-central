@@ -54,7 +54,7 @@ class Story
           'menu_position' => 5,
           'show_in_nav_menus' => true,
           'register_meta_box_cb' => array( $this, 'add_meta_boxes' ),
-          'supports' => array( 'title', 'editor', 'thumbnail' ),
+          'supports' => array( 'title', 'editor', 'thumbnail', 'comments' ),
           'yarpp_support' => true,
           'taxonomies' => array('post_tag'),
         )
