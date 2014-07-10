@@ -54,7 +54,7 @@ class Story
           'menu_position' => 5,
           'show_in_nav_menus' => true,
           'register_meta_box_cb' => array( $this, 'add_meta_boxes' ),
-          'supports' => array( 'title', 'editor', 'thumbnail', 'comments' ),
+          'supports' => array( 'title', 'editor', 'thumbnail', 'comments', 'revisions', 'custom-fields' ),
           'yarpp_support' => true,
           'taxonomies' => array('post_tag'),
         )
@@ -151,6 +151,9 @@ class Story
     }
 
     function abstract_cb( $post ){
+        echo '<input type="hidden" name="story_noncename" id="story_noncename" value="' .
+              wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
+
         $abstract = (String) get_post_meta($post->ID, 'abstract', true);
         wp_editor($abstract, 'story-abstract', array('textarea_name' => 'abstract', 'media_buttons' => false, 'textarea_rows' => 3, 'teeny' => true));
     }
@@ -358,7 +361,24 @@ class Story
 
     function save_story_cb( $post_id ) {
 
-        // todo: validation
+
+      if ( !wp_verify_nonce( $_POST['story_noncename'], plugin_basename(__FILE__) )) {
+          return $post_id;
+      }
+
+      if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
+          return $post_id;
+
+      if ( 'page' == $_POST['post_type'] ) {
+          if ( !current_user_can( 'edit_page', $post_id ) )
+              return $post_id;
+
+      } else {
+              if ( !current_user_can( 'edit_post', $post_id ) )
+                  return $post_id;
+      }
+
+        // Validated
         $abstract  = $_POST['abstract'];
         $twitter  = $_POST['twitter'];
         $facebook = $_POST['facebook'];
