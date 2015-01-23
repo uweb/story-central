@@ -25,7 +25,7 @@
 
       <div class="row show-grid">
 
-<div id="main" class="col-md-8 uw-content" role="main">
+<div class="col-md-8 uw-content" role="main">
         <div>
             <?php $promoted = get_promoted_story(); ?>
             <div class='promoted-story-tile'>
@@ -67,7 +67,7 @@
              <div id="sidebar">
               <?php if (is_active_sidebar('homepage-sidebar') && is_front_page() ||
                         is_active_sidebar('homepage-sidebar') && is_home() ) : dynamic_sidebar('homepage-sidebar'); else: dynamic_sidebar('sidebar'); endif; ?>
-               <a class="button" href="<?php echo admin_url('post-new.php?post_type=story'); ?>">Upload stories</a>
+               <a class="uw-btn btn-external btn-gold btn-sm" href="<?php echo admin_url('post-new.php?post_type=story'); ?>">Upload stories</a>
              </div><!-- #sidebar -->
         </div><!-- #secondary -->
 </div>
