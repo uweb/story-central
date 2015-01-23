@@ -1,9 +1,9 @@
 <?php
 
-class UW_Story_Central_Install_Scripts extends UW_Install_Scripts
+class UW_Story_Central_Install_Scripts extends UW_Scripts
 {
 
-  function UW_Story_Central_Install_Scripts()
+  function __construct()
   {
 
     $this->SCRIPTS = array(
@@ -18,10 +18,11 @@ class UW_Story_Central_Install_Scripts extends UW_Install_Scripts
 
     );
 
-    parent::UW_Install_Scripts();
+    parent::__construct();
 
   }
 
 }
 
 new UW_Story_Central_Install_Scripts;
+
