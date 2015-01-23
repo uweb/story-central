@@ -4,7 +4,9 @@
 <?php while( have_posts() ) : the_post(); ?>
 
   <div id="story-bank-info">
-    <h1><?php the_title(); ?></h1><?php the_content(); ?>
+    <h1><?php the_title(); ?></h1>
+    <span class="udub-slant"><span></span></span>
+    <?php the_content(); ?>
   </div>
 
 <?php endwhile; ?>
@@ -22,7 +24,9 @@
       <div id="content" role="main" class="container">
 
       <div class="row show-grid">
-        <div id="main" class="span8">
+
+<div id="main" class="col-md-8 uw-content" role="main">
+        <div>
             <?php $promoted = get_promoted_story(); ?>
             <div class='promoted-story-tile'>
                 <div class='tile-background' style='background-image:url("<?= get_story_featured_image_url($promoted->ID, false )?>");' ></div>
@@ -55,8 +59,10 @@
         </div>
 
         </div>
+</div>
 
-        <div id="secondary" class="span4 right-bar" role="complementary">
+<div class="col-md-4 uw-sidebar">
+        <div id="secondary" class="right-bar" role="complementary">
           <div class="stripe-top"></div><div class="stripe-bottom"></div>
              <div id="sidebar">
               <?php if (is_active_sidebar('homepage-sidebar') && is_front_page() ||
@@ -64,7 +70,7 @@
                <a class="button" href="<?php echo admin_url('post-new.php?post_type=story'); ?>">Upload stories</a>
              </div><!-- #sidebar -->
         </div><!-- #secondary -->
-
+</div>
 
       </div><!-- .show-grid -->
     </div><!-- #content -->

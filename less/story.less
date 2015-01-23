@@ -2,7 +2,7 @@
 
 #flex-bg {
 	position: absolute;
-	z-index: -1;
+	z-index: 0;
 	top: 0;
  	right: 0;
  	left: 0;
@@ -26,7 +26,11 @@
 		opacity: 0;
 	}
 }
-
+#content {
+	background-color: #FFF;
+	z-index: 1;
+	position: relative;
+}
 
 .home.siteorigin-panels #primary {
 	background: none no-repeat 0 0 #fff;
@@ -73,24 +77,27 @@
 }
 
 #story-bank-info {
-	width: 800px;
+	width: 1190px;
 	margin: 60px auto 50px;
 	overflow: hidden;
-	text-align: center;
+	text-align: left;
+	position: relative;
+	z-index: 1;
 	h1 {
-		font-weight: 800;
-		text-align: center;
-		font-size: 73px;
+		font-family: "Encode Sans Compressed",sans-serif;
+		text-transform: uppercase;
+		font-weight: 900;
+		font-size: 58px;
 		color: #fff;
 	}
 
 	p {
 		color: #fff;
 		font-weight: 600;
-		font-size: 1.15em;
+		font-size: 1.1em;
 		line-height: 23px;
-		margin: 0 auto 30px auto;
-		width: 90%;
+		margin: 0 0 30px;
+		width: 70%;
 	}
 }
 
