@@ -33,6 +33,26 @@ Version: 0.1
   background-image: url('img/bg-blrd.jpg');
   opacity: 0;
 }
+.single .button {
+  text-align: center;
+  background-color: #048AC2;
+  color: #FFF;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -moz-background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  padding: 10px 18px;
+  font-weight: bold;
+  border: none;
+  font-size: 13px;
+  text-indent: 0;
+  overflow: hidden;
+  display: block;
+  width: 160px;
+  margin: 0 auto;
+}
 #content {
   background-color: #FFF;
   z-index: 1;
@@ -41,8 +61,14 @@ Version: 0.1
 .home .widget {
   padding: 5px 20px 0 20px;
 }
-.side .uw-btn {
+#sidebar .uw-btn {
   margin-left: 20px;
+}
+.single #content {
+  margin-top: 40px;
+}
+.widget.story-gallery {
+  padding: 0;
 }
 .home.siteorigin-panels #primary {
   background: none no-repeat 0 0 #ffffff;
