@@ -22,7 +22,7 @@ class UW_Story_Gallery extends WP_Widget
 
     //TODO : change hardcoded html to the dynamic
     $title = '<h3 class="widget-title"><span>Image Assets</span></h3>';
-    $downloadLink = '<a href="'.admin_url('admin-ajax.php').'?'. http_build_query($data).'" class="download-image-assets button pull-right">Download all</a>';
+    $downloadLink = '<a href="'.admin_url('admin-ajax.php').'?'. http_build_query($data).'" class="download-image-assets button">Download all</a>';
     return $title . $output . $downloadLink;
   }
 
