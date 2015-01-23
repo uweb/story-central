@@ -4,7 +4,7 @@ Theme URI: washington.edu
 Description: the Story Central theme
 Author: UW Web Team
 Author URI: http://uw.edu/
-Template: uw-2013
+Template: uw-2014
 Version: 0.1
 */
 #flex-bg {
@@ -61,7 +61,7 @@ Version: 0.1
   margin-top: 35px;
 }
 #sidebar .button {
-  font-size: 1.3em;
+  font-size: 1.1em;
   background-color: #d7a900;
   text-transform: uppercase;
   font-weight: 700;
