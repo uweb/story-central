@@ -37,6 +37,30 @@ function get_promoted_story($pillar=false) {
     return $query->posts[0];
 }
 
+//"Abstract" section
+//
+function the_abstract_section( $post_id ) {
+    echo get_the_abstract_section( $post_id );
+}
+
+function get_the_abstract_section( $post_id ) {
+    $abstract = get_abstract_text($post_id);
+    if (!empty($abstract)){
+        $html = "
+            <div class='widget uw-story-central'>
+                <h3 class='widget-title'>Abstract</h3>
+                <div id='abstract-section'>" . $abstract . "</div>
+            </div>";
+        return story_section($html);
+    }
+    return '';
+}
+
+function get_abstract_text( $post_id ) {
+    return get_post_meta($post_id, 'abstract', true);
+}
+
+
 //Link to source section
 //
 function the_source_link_section( $post_id ) {
@@ -167,20 +191,35 @@ function the_featured_image_section( $post_id ) {
     echo get_the_featured_image_section( $post_id );
 }
 
-function get_the_featured_image_section( $post_id ) {
-    $url = get_story_featured_image_url($post_id, false);
-    if (empty($url)){
-        return '';
-    }
-    else {
-        $url_attr = "url('" . $url . "');";
-        $html = '<div class="promoted-story-tile">
-                    <div class="tile-background" style="background-image:' . $url_attr . '" ></div>
-                </div>';
-    }
-    return story_section($html);
+function get_the_featured_image_section( $post_id )
+{
+    $post = get_post( $post_id );
+    $url  = get_story_featured_image_url($post_id, false);
+
+    $html = "<div class=\"promoted-story-tile\">
+                <img src=\"$url\" />
+            </div>";
+
+    return ! empty( $url ) ? story_section($html) : '';
 }
 
+
+function the_video_embed( $post_id )
+{
+  echo get_the_video_embed( $post_id );
+}
+
+function get_the_video_embed( $post_id )
+{
+  $video_url = (String) get_post_meta( $post_id, 'video', true );
+  $video = wp_oembed_get( $video_url );
+  $html = '<div class="widget">
+            <h3 class="widget-title">Video</h3>
+            <p> ' . $video . '</p>
+          </div>';
+
+  return story_section( $html );
+}
 
 function story_section( $html )
 {
@@ -200,13 +239,8 @@ function the_media_gallery_section( $post_id )
 function get_the_media_gallery_section( $post_id )
 {
     $media = (String) get_post_meta($post_id, 'gallery', true);
-    if (empty($media)) {
-        $html = '<div class="widget"><h3 class="widget-title">Image Assets</h3><p class="no-gallery">no images uploaded...</p></div>';
-    }
-    else {
-        $html = '<div class="widget story-gallery">' . do_shortcode('[gallery ids="'. $media .'"]') . '</div>';
-    }
-    return story_section( $html );
+    $html = ! empty( $media ) ? '<div class="widget story-gallery">' . do_shortcode('[gallery ids="'. $media .'"]') . '</div>' : '';
+    return $html;
 }
 
 //this simply returns the array of attachment IDs
@@ -226,7 +260,8 @@ function get_media_gallery_featured_image_url( $post_id, $backup=false ) {
     if ($backup) {
         $url = get_stylesheet_directory_uri() . '/img/social.jpg';                      //can set a default story image here
     }
-    if (!empty($media_arr)){
+    if ( !empty($media_arr) )
+    {
         $image_id = $media_arr[0];
         $url = wp_get_attachment_url($image_id);
     }
@@ -234,13 +269,10 @@ function get_media_gallery_featured_image_url( $post_id, $backup=false ) {
 }
 
 function get_story_featured_image_url( $post_id, $backup=false ) {
-    $image_id = get_post_thumbnail_id( $post_id );
-    if (!empty($image_id)) {
-        $url_arr = wp_get_attachment_image_src( $image_id, 'full' );
-        $url = $url_arr[0];
-    }
-    else {
-        $url = get_media_gallery_featured_image_url( $post_id, $backup );
-    }
+
+    $url =  ( has_post_thumbnail( $post_id ) ) ?
+              reset( wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ) , 'full' ) ) :
+              get_media_gallery_featured_image_url( $post_id, $backup );
+
     return $url;
 }

@@ -54,7 +54,7 @@ class Story
           'menu_position' => 5,
           'show_in_nav_menus' => true,
           'register_meta_box_cb' => array( $this, 'add_meta_boxes' ),
-          'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ),
+          'supports' => array( 'title', 'editor', 'thumbnail', 'comments', 'revisions', 'custom-fields' ),
           'yarpp_support' => true,
           'taxonomies' => array('post_tag'),
         )
@@ -139,13 +139,23 @@ class Story
 
 
     function add_meta_boxes( $post ) {
+        add_meta_box( 'abstract', 'Abstract', array( $this, 'abstract_cb' ), self::POST_TYPE );
         add_meta_box( 'source', 'Original Story Link', array( $this, 'source_cb' ), self::POST_TYPE );
         add_meta_box( 'gallery', 'Gallery', array( $this, 'gallery_cb' ), self::POST_TYPE );
+        add_meta_box( 'video', 'Video', array( $this, 'video_cb' ), self::POST_TYPE );
         add_meta_box( 'twitter', 'Twitter', array( $this, 'twitter_cb' ), self::POST_TYPE );
         add_meta_box( 'facebook', 'Facebook', array( $this, 'facebook_cb' ), self::POST_TYPE );
         add_meta_box( 'links', 'Related Links', array( $this, 'links_cb' ), self::POST_TYPE );
         add_meta_box( 'orig_authors', 'Contacts', array( $this, 'original_authors_cb' ), self::POST_TYPE );
         add_meta_box( 'promoted', 'Promoted to top of page?', array( $this, 'promoted_cb' ), self::POST_TYPE, 'side' );
+    }
+
+    function abstract_cb( $post ){
+        echo '<input type="hidden" name="story_noncename" id="story_noncename" value="' .
+              wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
+
+        $abstract = (String) get_post_meta($post->ID, 'abstract', true);
+        wp_editor($abstract, 'story-abstract', array('textarea_name' => 'abstract', 'media_buttons' => false, 'textarea_rows' => 3, 'teeny' => true));
     }
 
     function gallery_cb( $post ) {
@@ -335,27 +345,58 @@ class Story
         $source = (String) get_post_meta($post->ID, 'source', true);
         ?>
         <label for='source'>URL</label>
-        <input type='text' name='source' value='<?= $source ?>' />
+        <input size="100%" type='text' name='source' value='<?= $source ?>' />
         <?php
+    }
+
+    function video_cb( $post ) {
+      $video_url = (String) get_post_meta( $post->ID, 'video', true );
+      ?>
+
+      <label for="video">Video URL: </label>
+      <input name="video" type="text" size="100%" value="<?php echo $video_url; ?>" />
+      <p><a target="_blank" title="Embedable urls" href="http://codex.wordpress.org/Embeds#Okay.2C_So_What_Sites_Can_I_Embed_From.3F">List of compatible URLs</a></p>
+      <?php
     }
 
     function save_story_cb( $post_id ) {
 
-        // todo: validation
+
+      if ( !wp_verify_nonce( $_POST['story_noncename'], plugin_basename(__FILE__) )) {
+          return $post_id;
+      }
+
+      if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
+          return $post_id;
+
+      if ( 'page' == $_POST['post_type'] ) {
+          if ( !current_user_can( 'edit_page', $post_id ) )
+              return $post_id;
+
+      } else {
+              if ( !current_user_can( 'edit_post', $post_id ) )
+                  return $post_id;
+      }
+
+        // Validated
+        $abstract  = $_POST['abstract'];
         $twitter  = $_POST['twitter'];
         $facebook = $_POST['facebook'];
         $links    = $_POST['links'];
         $authors  = $_POST['authors'];
         $gallery  = $_POST['gallery'];
         $source   = $_POST['source'];
+        $video    = $_POST['video'];
         $promoted = $_POST['promoted'];
 
+        update_post_meta( $post_id, 'abstract', $abstract );
         update_post_meta( $post_id, 'twitter', $twitter );
         update_post_meta( $post_id, 'facebook', $facebook );
         update_post_meta( $post_id, 'links', $links);
         update_post_meta( $post_id, 'authors', $authors);
         update_post_meta( $post_id, 'gallery', $gallery);
         update_post_meta( $post_id, 'source', $source);
+        update_post_meta( $post_id, 'video', $video );
         update_post_meta( $post_id, 'promoted', $promoted);
     }
 }

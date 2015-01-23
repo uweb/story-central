@@ -13,6 +13,8 @@
 
                 <?php the_featured_image_section( get_the_ID() ); ?>
 
+                <?php the_abstract_section( get_the_ID() ); ?>
+
         <div class="block-row">
     			<?php the_content(); ?>
         </div>
@@ -20,6 +22,8 @@
                 <?php the_source_link_section( get_the_ID() ); ?>
 
 				<?php the_media_gallery_section( get_the_ID() ); ?>
+
+				<?php the_video_embed( get_the_ID() ); ?>
 
 				<?php the_twitter_section( get_the_ID() ); ?>
 
@@ -30,6 +34,8 @@
 				<?php the_original_authors_section( get_the_ID() ); ?>
 
       <?php endwhile; ?>
+
+			<?php comments_template(); ?>
 
       </div>
 

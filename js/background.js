@@ -1,7 +1,13 @@
 $(document).ready(function() {
 
-  $(window).scroll(function(e) {
-      $('#blurred-background').css( 'opacity', $(this).scrollTop() / 150 )
+  var $window = $(window)
+    , $blur   = $('#blurred-background')
+
+  $window.scroll(function(e) {
+    var top = $window.scrollTop()
+
+    $blur.css( 'opacity', top / 150 > 1 ? 1 : top / 150 );
+
   });
 
 });
