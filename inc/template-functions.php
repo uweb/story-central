@@ -48,7 +48,7 @@ function get_the_abstract_section( $post_id ) {
     if (!empty($abstract)){
         $html = "
             <div class='widget uw-story-central'>
-                <h3 class='widget-title'>Abstract</h3>
+                <h3 class='widgettitle'>Abstract</h3>
                 <div id='abstract-section'>" . $abstract . "</div>
             </div>";
         return story_section($html);
@@ -92,7 +92,7 @@ function get_the_twitter_section( $post_id )
   if ( ! $twitter->tweet ) return;
 
   $html = '<div class="widget uw-story-social">
-            <h3 class="widget-title">Twitter</h3>
+            <h3 class="widgettitle">Twitter</h3>
             <div class="twitter-widget copy">
               <div class="social-head">
                 <div class="handle"><img src="'. get_stylesheet_directory_uri() .'/img/social.jpg">
@@ -121,7 +121,7 @@ function get_the_facebook_section( $post_id )
   if ( ! $facebook->post ) return;
 
   $html = '<div class="widget uw-story-social">
-            <h3 class="widget-title">Facebook</h3>
+            <h3 class="widgettitle">Facebook</h3>
             <div class="facebook-widget copy">
               <div class="social-head">
                 <div class="handle"><img src="'. get_stylesheet_directory_uri() .'/img/social.jpg">
@@ -151,7 +151,7 @@ function get_the_external_links_section( $post_id )
   if ( ! $external ) return;
 
   $html = '<div class="widget">
-            <h3 class="widget-title">Related Links</h3>
+            <h3 class="widgetitle">Related Links</h3>
             <p>'. $external .'</p>
           </div>';
 
@@ -176,7 +176,7 @@ function get_the_original_authors_section( $post_id )
   if ( ! $authors ) return;
 
   $html = '<div class="widget">
-            <h3 class="widget-title">Contacts</h3>
+            <h3 class="widgettitle">Contacts</h3>
             <p>'. $authors .'</p>
           </div>';
 
@@ -214,7 +214,7 @@ function get_the_video_embed( $post_id )
   $video_url = (String) get_post_meta( $post_id, 'video', true );
   $video = wp_oembed_get( $video_url );
   $html = '<div class="widget">
-            <h3 class="widget-title">Video</h3>
+            <h3 class="widgettitle">Video</h3>
             <p> ' . $video . '</p>
           </div>';
 
