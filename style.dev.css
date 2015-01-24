@@ -67,7 +67,7 @@ Version: 0.1
 .single #content {
   margin-top: 40px;
 }
-.widget.story-gallery {
+.single .widget {
   padding: 0;
 }
 .home.siteorigin-panels #primary {
@@ -235,6 +235,9 @@ div.story-section {
   -moz-box-shadow: none;
   box-shadow: none;
 }
+.uw-content {
+  padding: 30px 20px 0 50px;
+}
 .tile-title-holder {
   background-color: rgba(57, 39, 91, 0.8);
   position: absolute;
@@ -265,7 +268,7 @@ div.story-section {
 }
 .promoted-story-tile .tile-background {
   width: 100%;
-  height: 335px;
+  height: 500px;
   background-size: cover;
 }
 .promoted-story-tile .abstract {
