@@ -5,7 +5,7 @@
 
 
 		<div class="row">
-			<div class="span8">
+			<div class="span8 uw-sidebar">
 
       <?php while (have_posts()) : the_post(); ?>
 

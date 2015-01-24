@@ -21,7 +21,7 @@ class UW_Story_Gallery extends WP_Widget
     $data = array( 'action' => 'get_image_assets', 'ids' => $attr['ids'] , 'name' => $post->post_name );
 
     //TODO : change hardcoded html to the dynamic
-    $title = '<h3 class="widget-title"><span>Image Assets</span></h3>';
+    $title = '<h3 class="widgettitle"><span>Image Assets</span></h3>';
     $downloadLink = '<a href="'.admin_url('admin-ajax.php').'?'. http_build_query($data).'" class="download-image-assets button">Download all</a>';
     return $title . $output . $downloadLink;
   }
