@@ -66,6 +66,7 @@ Version: 0.1
 }
 .single #content {
   margin-top: 40px;
+  z-index: 0;
 }
 .single .widget {
   padding: 0;
