@@ -107,7 +107,7 @@ Version: 0.1
   margin: 40px 0 0 0;
 }
 #story-bank-info {
-  width: 1190px;
+  width: 1070px;
   margin: 60px auto 50px;
   overflow: hidden;
   text-align: left;
@@ -118,7 +118,7 @@ Version: 0.1
   font-family: "Encode Sans Compressed", sans-serif;
   text-transform: uppercase;
   font-weight: 900;
-  font-size: 58px;
+  font-size: 75px;
   color: #fff;
 }
 #story-bank-info p {
@@ -238,6 +238,12 @@ div.story-section {
 }
 .uw-content {
   padding: 30px 20px 0 50px;
+}
+.udub-slant span {
+  background-color: #B7A57A;
+}
+.home #sidebar {
+  padding: 0 20px;
 }
 .tile-title-holder {
   background-color: rgba(57, 39, 91, 0.8);
