@@ -262,7 +262,7 @@ function get_the_media_gallery_array( $post_id ){
 }
 
 //this uses the above function to return an attachement url
-function get_media_gallery_featured_image_url( $post_id, $backup=false ) {
+function get_media_gallery_featured_image_url( $post_id, $backup=false, $size='thumbnail' ) {
     $media_arr = get_the_media_gallery_array( $post_id );
     $url = '';
     if ($backup) {
@@ -271,7 +271,7 @@ function get_media_gallery_featured_image_url( $post_id, $backup=false ) {
     if ( !empty($media_arr) )
     {
         $image_id = $media_arr[0];
-        $url = wp_get_attachment_url($image_id);
+        $url = reset( wp_get_attachment_image_src( $image_id, $size ) );
     }
     return $url;
 }
@@ -280,7 +280,7 @@ function get_story_featured_image_url( $post_id, $backup=false, $size ='thumbnai
 
     $url =  ( has_post_thumbnail( $post_id ) ) ?
               reset( wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ) , $size ) ) :
-              get_media_gallery_featured_image_url( $post_id, $backup );
+              get_media_gallery_featured_image_url( $post_id, $backup, $size );
 
     return $url;
 }
