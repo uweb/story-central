@@ -245,8 +245,7 @@ function get_the_media_gallery_section( $post_id )
     $title = '<h3 class="widgettitle"><span>Image Assets</span></h3>';
     $downloadLink = '<a href="'.admin_url('admin-ajax.php').'?'. http_build_query($data).'" class="download-image-assets button">Download all</a>';
 
-    $html = ! empty( $media ) ? '<div class="widget story-gallery">' . $title . do_shortcode('[gallery ids="'. $media .'"]') . $downloadLink . '</div>' : '';
-
+    $html = ! empty( $media ) ? '<div class="widget story-gallery">' . $title . do_shortcode('[gallery ids="'. $media .'" columns=7]') . $downloadLink . '</div>' : '';
 
     return $html;
 }
