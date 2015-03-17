@@ -276,10 +276,10 @@ function get_media_gallery_featured_image_url( $post_id, $backup=false ) {
     return $url;
 }
 
-function get_story_featured_image_url( $post_id, $backup=false ) {
+function get_story_featured_image_url( $post_id, $backup=false, $size ='thumbnail' ) {
 
     $url =  ( has_post_thumbnail( $post_id ) ) ?
-              reset( wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ) , 'full' ) ) :
+              reset( wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ) , $size ) ) :
               get_media_gallery_featured_image_url( $post_id, $backup );
 
     return $url;
