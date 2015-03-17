@@ -194,7 +194,7 @@ function the_featured_image_section( $post_id ) {
 function get_the_featured_image_section( $post_id )
 {
     $post = get_post( $post_id );
-    $url  = get_story_featured_image_url($post_id, false, array( 700, 700 ));
+    $url  = get_story_featured_image_url($post_id, false, array( 1200, 700 ));
 
     $html = "<div class=\"promoted-story-tile\">
                 <img src=\"$url\" />
