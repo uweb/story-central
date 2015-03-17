@@ -29,11 +29,11 @@
         <div>
             <?php $promoted = get_promoted_story(); ?>
             <div class='promoted-story-tile'>
-                <div class='tile-background' style='background-image:url("<?= get_story_featured_image_url($promoted->ID, false )?>");' ></div>
+                <div class='tile-background' style='background-image:url("<?php echo get_story_featured_image_url($promoted->ID, false )?>");' ></div>
                 <div class='tile-bottom'></div>
-                <a href='<?= get_permalink($promoted->ID) ?>'><div class='tile-title-holder'>
-                    <h2><?= $promoted->post_title ?></h2>
-                    <p class='abstract'><?= get_abstract_text($promoted->ID) ?></p>
+                <a href='<?php echo get_permalink($promoted->ID) ?>'><div class='tile-title-holder'>
+                    <h2><?php echo $promoted->post_title ?></h2>
+                    <p class='abstract'><?php echo get_abstract_text($promoted->ID) ?></p>
                 </div></a>
             </div>
 
@@ -46,7 +46,7 @@
              <?php foreach( get_stories_with_pillar($pillar, 3) as $post ) : setup_postdata($post); ?>
 
                  <div class='story-tile'>
-                     <div class='tile-background' style='background-image:url("<?= get_story_featured_image_url($post->ID, true) ?>");' >
+                     <div class='tile-background' style='background-image:url("<?php echo get_story_featured_image_url($post->ID, true) ?>");' >
                         <div class='tile-title-holder'>
                             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                         </div>

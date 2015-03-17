@@ -345,7 +345,7 @@ class Story
         $source = (String) get_post_meta($post->ID, 'source', true);
         ?>
         <label for='source'>URL</label>
-        <input size="100%" type='text' name='source' value='<?= $source ?>' />
+        <input size="100%" type='text' name='source' value='<?php echo $source ?>' />
         <?php
     }
 

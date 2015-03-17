@@ -19,13 +19,13 @@ class UW_Story_Social_Widget extends WP_Widget {
         $text = $instance['text'];
         ?>
         <div class='widget uw-story-social'>
-            <h3 class='widget-title'><?= $type ?></h3>
-            <div class='<?= strtolower($type) ?>-widget'>
+            <h3 class='widget-title'><?php echo $type ?></h3>
+            <div class='<?php echo strtolower($type) ?>-widget'>
                 <div class='social-head'>
-                    <img src='<?= get_stylesheet_directory_uri() ?>/img/social.jpg'>
+                    <img src='<?php echo get_stylesheet_directory_uri() ?>/img/social.jpg'>
                     <span>University of Washington</span>
                 </div>
-                <p><?= $text ?></p>
+                <p><?php echo $text ?></p>
             </div>
         </div>
         <?php
@@ -45,10 +45,10 @@ class UW_Story_Social_Widget extends WP_Widget {
         $rand = rand(0, 9999);
         ?>
         <label for='social-type'>Social Network</label>
-        <select id='social-type' name='<?= $this->get_field_name('type') ?>'><?php
+        <select id='social-type' name='<?php echo $this->get_field_name('type') ?>'><?php
         foreach ($socials as $social) {
             ?>
-            <option class='<?= $social ?>' value='<?= $social ?>' <?php if ($type == $social){ ?> selected <?php } ?>><?= $social ?></option>
+            <option class='<?php echo $social ?>' value='<?php echo $social ?>' <?php if ($type == $social){ ?> selected <?php } ?>><?php echo $social ?></option>
         <?php } ?>
         </select>
         <?php
@@ -61,7 +61,7 @@ class UW_Story_Social_Widget extends WP_Widget {
                         function() {
                             var saveID = $( this ).attr( 'id' );
                             var ID = saveID.replace( /-savewidget/, '' );
-                            var textTab = ID + '-text_<?= $rand ?>-html';
+                            var textTab = ID + '-text_<?php echo $rand ?>-html';
                             $( '#'+textTab ).trigger( 'click' );
 
                         }

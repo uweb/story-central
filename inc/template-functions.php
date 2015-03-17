@@ -239,6 +239,8 @@ function the_media_gallery_section( $post_id )
 function get_the_media_gallery_section( $post_id )
 {
     $media = (String) get_post_meta($post_id, 'gallery', true);
+    var_dump( '[gallery ids="'. $media .'"]' );
+    var_dump( do_shortcode( '[gallery ids="'+ $media +'"]' ) );
     $html = ! empty( $media ) ? '<div class="widget story-gallery">' . do_shortcode('[gallery ids="'. $media .'"]') . '</div>' : '';
     return $html;
 }

@@ -14,24 +14,24 @@
 
       <div class="row show-grid">
         <div id="main" class="span8">
-            
+
             <?php $pillar = get_term_by('slug', $pillar, 'pillar');?>
             <?php $promoted = get_promoted_story($pillar); ?>
             <div class='promoted-story-tile'>
-                <div class='tile-background' style='background-image:url("<?= get_story_featured_image_url($promoted->ID, true )?>");' ></div>
+                <div class='tile-background' style='background-image:url("<?php echo get_story_featured_image_url($promoted->ID, true )?>");' ></div>
                 <div class='tile-bottom'></div>
-                <a href='<?= get_permalink($promoted->ID) ?>'><div class='tile-title-holder'>
-                    <h2><?= $promoted->post_title ?></h2>
-                    <p class='abstract'><?= get_abstract_text($promoted->ID) ?></p>
+                <a href='<?php echo get_permalink($promoted->ID) ?>'><div class='tile-title-holder'>
+                    <h2><?php echo $promoted->post_title ?></h2>
+                    <p class='abstract'><?php echo get_abstract_text($promoted->ID) ?></p>
                 </div></a>
             </div>
 
-            <h2><?= $pillar->name ?></h2>
+            <h2><?php echo $pillar->name ?></h2>
 
             <?php foreach( get_stories_with_pillar($pillar) as $post ) : setup_postdata($post); ?>
-                
+
                 <div class='story-tile'>
-                    <div class='tile-background' style='background-image:url("<?= get_story_featured_image_url($post->ID, true) ?>");' ></div>
+                    <div class='tile-background' style='background-image:url("<?php echo get_story_featured_image_url($post->ID, true) ?>");' ></div>
                     <div class='tile-bottom'></div>
                     <div class='tile-title-holder'>
                         <p><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
