@@ -67,7 +67,7 @@
              <div id="sidebar">
               <?php if (is_active_sidebar('homepage-sidebar') && is_front_page() ||
                         is_active_sidebar('homepage-sidebar') && is_home() ) : dynamic_sidebar('homepage-sidebar'); else: dynamic_sidebar('sidebar'); endif; ?>
-               <a class="uw-btn btn-external btn-gold btn-sm" href="<?php echo admin_url('post-new.php?post_type=story'); ?>">Upload stories</a>
+               <a class="uw-btn btn-external btn-gold btn-sm" href="https://catalyst.uw.edu/webq/survey/jswen/259668">Pitch a story</a>
              </div><!-- #sidebar -->
         </div><!-- #secondary -->
 </div>
