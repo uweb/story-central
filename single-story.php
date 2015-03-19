@@ -19,7 +19,7 @@
     			<?php the_content(); ?>
         </div>
 
-                <?php the_source_link_section( get_the_ID() ); ?>
+        <?php the_source_link_section( get_the_ID() ); ?>
 
 				<?php the_media_gallery_section( get_the_ID() ); ?>
 
