@@ -285,6 +285,9 @@ div.story-section {
   margin-right: 10px;
   margin-bottom: 5px;
 }
+.spacer {
+  margin-bottom: 60px;
+}
 .story-tile {
   height: 160px;
   width: 29%;

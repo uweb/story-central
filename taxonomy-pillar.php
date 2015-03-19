@@ -1,8 +1,14 @@
-<?php get_header(); ?>
+<?php
+$pillar = get_term_by('slug', $pillar, 'pillar');
+$promoted = get_promoted_story($pillar);
 
-    <div id="story-bank-info">
-      <a class="button" href="<?php echo admin_url('post-new.php?post_type=story'); ?>">Upload stories</a>
-    </div>
+get_header();
+?>
+
+  <div id="story-bank-info">
+    <h1><?php echo $pillar->name ?></h1>
+    <span class="udub-slant"><span></span></span>
+  </div>
 
     <div id="flex-bg">
       <div class="img-src orig"></div>
@@ -13,10 +19,8 @@
       <div id="content" role="main" class="container">
 
       <div class="row show-grid">
-        <div id="main" class="span8">
-
-            <?php $pillar = get_term_by('slug', $pillar, 'pillar');?>
-            <?php $promoted = get_promoted_story($pillar); ?>
+        <div id="main" class="col-md-8 uw-content">
+            <?php if (!empty($promoted)): ?>
             <div class='promoted-story-tile'>
                 <div class='tile-background' style='background-image:url("<?php echo get_story_featured_image_url($promoted->ID, true, array(750,550) )?>");' ></div>
                 <div class='tile-bottom'></div>
@@ -25,8 +29,8 @@
                     <p class='abstract'><?php echo get_abstract_text($promoted->ID) ?></p>
                 </div></a>
             </div>
-
-            <h2><?php echo $pillar->name ?></h2>
+            <div class='spacer'></div>
+            <?php endif ?>
 
             <?php foreach( get_stories_with_pillar($pillar) as $post ) : setup_postdata($post); ?>
 
@@ -42,7 +46,7 @@
 
         </div>
 
-        <div id="secondary" class="span4 right-bar" role="complementary">
+        <div id="secondary" class="col-md-4 uw-sidebar" role="complementary">
           <div class="stripe-top"></div><div class="stripe-bottom"></div>
              <div id="sidebar">
               <?php if (is_active_sidebar('homepage-sidebar') && is_front_page() ||
