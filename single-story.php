@@ -1,11 +1,12 @@
 <?php get_header(); ?>
 
-<div id="primary">
-	<div id="content" role="main" class="container">
+<?php get_template_part( 'header', 'image' ); ?>
+
+	<div id="content" role="main" class="container uw-body">
 
 
 		<div class="row">
-			<div class="span8 uw-sidebar">
+			<div class="col-md-8 uw-content">
 
       <?php while (have_posts()) : the_post(); ?>
 
@@ -39,7 +40,7 @@
 
       </div>
 
-			<div id="secondary" class="span4 right-bar" role="complementary">
+			<div id="secondary" class="col-md-4 uw-sidebar" role="complementary">
 				<div class="stripe-top"></div><div class="stripe-bottom"></div>
 					<div id="sidebar">
 						<?php if (is_active_sidebar('homepage-sidebar') && is_front_page() ||
@@ -50,6 +51,5 @@
 		</div>
 
 	</div><!-- #content -->
-</div><!-- #primary -->
 
 <?php get_footer(); ?>
