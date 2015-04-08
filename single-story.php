@@ -8,6 +8,8 @@
 		<div class="row">
 			<div class="col-md-8 uw-content">
 
+                    <?php get_template_part( 'breadcrumbs' ); ?>
+
       <?php while (have_posts()) : the_post(); ?>
 
 				<h1 class="entry-title"><?php the_title() ?></h1>
