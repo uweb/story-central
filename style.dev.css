@@ -20,7 +20,7 @@ Version: 0.1
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   left: 0;
