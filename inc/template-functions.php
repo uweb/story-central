@@ -290,7 +290,7 @@ function get_the_pillar_posts() {
   $query = get_search_query();
   $pillars  = get_pillars();
   foreach ($pillars  as $pillar ) {
-      if ( stripos($pillar->slug, $query) !== false ) {
+      if ( stripos($pillar->name, $query) !== false ) {
         $posts[] = get_stories_with_pillar( $pillar );
       }
   }
