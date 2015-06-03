@@ -212,6 +212,7 @@ function the_video_embed( $post_id )
 function get_the_video_embed( $post_id )
 {
   $video_url = (String) get_post_meta( $post_id, 'video', true );
+  if ( ! $video_url ) return;
   $video = wp_oembed_get( $video_url );
   $html = '<div class="widget">
             <h3 class="widgettitle">Video</h3>
