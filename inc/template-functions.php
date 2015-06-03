@@ -291,7 +291,7 @@ function get_the_pillar_posts() {
   $pillars  = get_pillars();
   foreach ($pillars  as $pillar ) {
       if ( stripos($pillar->name, $query) !== false ) {
-        $posts[] = get_stories_with_pillar( $pillar );
+        $posts = get_stories_with_pillar( $pillar );
       }
   }
 
