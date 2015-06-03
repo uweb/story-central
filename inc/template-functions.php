@@ -284,3 +284,17 @@ function get_story_featured_image_url( $post_id, $backup=false, $size ='thumbnai
 
     return $url;
 }
+
+// gets cateogry posts
+function get_the_pillar_posts() {
+  $query = get_search_query();
+  $pillars  = get_pillars();
+  foreach ($pillars  as $pillar ) {
+      if ( stripos($pillar->slug, $query) !== false ) {
+        $posts[] = get_stories_with_pillar( $pillar );
+      }
+  }
+
+  return $posts  ? $posts : false;
+
+}
