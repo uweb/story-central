@@ -24,7 +24,7 @@
               get_template_part( 'content', 'archive' );
             endwhile;
           elseif ( $pillars = get_the_pillar_posts() ) :
-            foreach ($pillars as $post ) : the_post( $post );
+            foreach ($pillars as $post ) : setup_postdata( $post );
               get_template_part( 'content', 'archive' );
             endforeach;
           else :
