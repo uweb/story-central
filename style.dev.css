@@ -1,11 +1,11 @@
 /*!
-Theme Name: Story
+Theme Name: Story Central
 Theme URI: washington.edu
 Description: the Story Central theme
 Author: UW Web Team
 Author URI: http://uw.edu/
 Template: uw-2014
-Version: 0.1
+Version: 1.0
 */
 .dropdown-arrow-inverse {
   border-bottom-color: #4b2e83 !important;
@@ -350,12 +350,12 @@ div.story-section {
   top: 50%;
 }
 .grid-sizer {
-  width: 33%;
+  width: 31%;
 }
 .grid-item {
   width: 31%;
   height: auto;
-  margin-bottom: 2%;
+  margin-bottom: 10px;
 }
 .boundless-tile {
   position: absolute;

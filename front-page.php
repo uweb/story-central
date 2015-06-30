@@ -26,12 +26,26 @@
     }
   });
 
+  //run masonry on load
+  $(window).load(function() {
+    $('.isotope').isotope({
+      itemSelector: '.element-item',
+      masonry: {
+        gutter: 10
+      }
+    });
+  });
+
   $('.filters-select').on( 'change', function() {
     var $this = $(this);
     var filterGroup = $this.attr('data-filter-group');
     filters[ filterGroup ] = this.value;
     buttonFilter = concatValues( filters );
-    $container.isotope({ filter : filterFunction });
+    $container.isotope({ filter : filterFunction,
+      masonry: {
+        gutter: 10
+      } 
+    });
   });
 
   // use value of search field to filter
@@ -39,7 +53,11 @@
     var $this = $(this);
     var search = $('#storycentral-search').val();
     qsRegex = new RegExp( search, 'gi' );
-    $container.isotope({ filter : filterFunction });
+    $container.isotope({ filter : filterFunction,
+      masonry: {
+        gutter: 10
+      }
+    });
   });
 
 
@@ -121,13 +139,13 @@
     <div class="row">
       <label class="screen-reader-text" for="storycentral-search" style="visibility:hidden;">Search for:</label>
       <input type="text" value name="storycentral-search" id="storycentral-search" class="searchbar quicksearch" placeholder="Search for:" />
-      <!-- <input type="submit" class="filters-search" id="storycentral-searchsubmit" data-filter-group="search" value="Search"> -->
     </div>
     </div>
   </div>
 
       <div id="archive_section">
       <div class="grid js-isotope isotope">
+      <div class="grid-sizer"></div>
            <?php
            $args = array(
             'posts_per_page'  => -1,
@@ -143,7 +161,6 @@
           $pillars = wp_get_post_terms($post->ID, 'pillar', array('fields' => 'slugs'));
           foreach($pillars as $pillar) : $tags = $tags . $pillar . " "; endforeach; ?>
 
-               <div class="grid-sizer"></div>
                <div class="boundless-tile grid-item element-item <?php echo $tags; ?>" >
                    <div class='boundless-image' style='background-image:url("<?php echo get_story_featured_image_url($post->ID) ?>");' ></div>
                       <div class="boundless-text">
