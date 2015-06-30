@@ -121,7 +121,7 @@
     <div class="row">
       <label class="screen-reader-text" for="storycentral-search" style="visibility:hidden;">Search for:</label>
       <input type="text" value name="storycentral-search" id="storycentral-search" class="searchbar quicksearch" placeholder="Search for:" />
-      <input type="submit" class="filters-search" id="storycentral-searchsubmit" data-filter-group="search" value="Search">
+      <!-- <input type="submit" class="filters-search" id="storycentral-searchsubmit" data-filter-group="search" value="Search"> -->
     </div>
     </div>
   </div>
