@@ -361,8 +361,9 @@ class Story
 
     function save_story_cb( $post_id ) {
 
+      $nonce = isset( $_POST['story_noncename'] ) ? $_POST['story_noncename'] : '';
 
-      if ( !wp_verify_nonce( $_POST['story_noncename'], plugin_basename(__FILE__) )) {
+      if ( !wp_verify_nonce( $nonce, plugin_basename(__FILE__) )) {
           return $post_id;
       }
 

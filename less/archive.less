@@ -1,104 +1,42 @@
-.uw-hero-image.boundless {
-  height: 445px;
-}
-
-
-.udub-slant span {
-    height: 10px;
-    width: 240px;
-}
-
-h2.uw-site-title {
-  display:none;
-}
-
-// Color the background
-
-.tan-bg {
-  background-color: #eeeadf;
-}
-.uw-body.container {
-  background-color: transparent;
-  margin-bottom: 0;
-  padding-bottom: 80px;
-}
-
-
-.boundless-archive {
-  #main_content {
-    margin: 5% -1%;
-  }
-  .text-overlay {
-    position: absolute;
-    top: -405px;
-    h1.uw-site-title {
-      position: relative;
-      top:0;
-      left:0;
-      width: 610px;
-      font-weight: 900;
-      line-height: 59px;
-      font-size: 57px;
-      text-transform: uppercase;
-    }
-    .spotlight-blurb {
-      color: white;
-      width: 100%;
-      p {
-        padding-right: 120px;
-        font-weight: 400;
-        font-size: 22px;
-        line-height: 31px;
-        color: #fff;
-        -webkit-font-smoothing: auto;
-        margin-bottom: 20px;
-        font-family: @font-family-headline;
-        text-shadow: 1px 1px 1px rgba(0,0,0,.4);
-        width: 60%;
-      }
-    }
-  }
   .grid-sizer {
     width: 33%;
   }
 
-  .grid-item {
-    width: 31%;
-    height: auto;
-    margin-bottom: 2%;
-  }
+.grid-item {
+  width: 31%;
+  height: auto;
+  margin-bottom: 2%;
+}
 
-  .boundless-tile {    
-    position: absolute;
-    // left: 0 !important;
-    // top: 0 !important;
-    // width: 31%;
-    //margin: 1% 1%;
-    // float: right;
-    .box-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
-    div.boundless-image {
-      height: 170px;
-      background-size: cover;
-      background-position: 80% center;
-      position: relative;
-      right: 0;
+.boundless-tile {
+  position: absolute;
+  .box-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+  div.boundless-image {
+    height: 170px;
+    background-size: cover;
+    background-position: 80% center;
+    position: relative;
+    right: 0;
+  }
+  div.boundless-text {
+    background-color: #fff;
+    padding: 10px 40px 20px;
+    p {
+      font-size: 16px;
+      line-height: 1.6;
     }
-    div.boundless-text {
-      background-color: #fff;
-      padding: 10px 40px 20px;
-      p {
-        font-size: 16px;
-        line-height: 1.6;
-      }
-    }
-    h3 {
-      color: #4D4D4D;
-      font-weight: 900;
-      font-size: 22px;
-    }
+  }
+  h3 {
+    color: #4D4D4D;
+    font-weight: 900;
+    font-size: 22px;
   }
 }
 
+#filters {
+   padding: 20px;
+  margin-bottom: 100px;
+}
 
 
 @media only screen and (min-width : 768px) and (max-width : 991px) {

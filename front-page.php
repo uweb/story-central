@@ -4,7 +4,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/packery/1.4.1/packery.pkgd.js"></script>
 <script>
   $( document ).ready( function() {
-  
+
   // quick search regex
   var qsRegex;
   var buttonFilter;
@@ -33,11 +33,11 @@
     buttonFilter = concatValues( filters );
     $container.isotope({ filter : filterFunction });
   });
-  
+
   // use value of search field to filter
   $('.filters-search').on( 'click', function() {
     var $this = $(this);
-    var search = $('#s').val();
+    var search = $('#storycentral-search').val();
     qsRegex = new RegExp( search, 'gi' );
     $container.isotope({ filter : filterFunction });
   });
@@ -52,7 +52,7 @@
     }
   }
   return value;
-  }  
+  }
 });
 
 </script>
@@ -73,12 +73,12 @@
 </div>
 
 <div id="primary" class="tan-bg">
- 
+
   <div class="container uw-body boundless-archive">
   <div class="row">
 
   <div class="col-md-12 uw-content" role="main">
-  <div id='main_content' class="uw-body-copy">       
+  <div id='main_content' class="uw-body-copy">
         <!-- Story Cental - Spotlight Story -->
           <!--  <?php $promoted //= get_promoted_story(); ?>
             <div class='promoted-story-tile'>
@@ -89,31 +89,46 @@
                     <p class='abstract'><?php //echo get_abstract_text($promoted->ID) ?></p>
                 </div></a>
             </div> -->
- <div id="filters" style="margin-left: auto; margin-right: auto; text-align: center;">
-    Pillar: 
-    <select id="pillar" class="filters-select button-group" data-filter-group="pillar">
+ <div id="filters" class="row">
+ <div class="dropdowns col-md-6">
+
+  <div class="row">
+
+    <label for="pillars">Pillar:</label>
+    <select id="pillar" name="pillars" class="filters-select button-group" data-filter-group="pillar">
       <option value="*">Show all</option>
       <?php foreach(get_pillars() as $pillar) : ?>
         <option value=".<?php echo $pillar->slug; ?>"><?php echo $pillar->name ?></option>
       <?php endforeach; ?>
     </select>
-    Tag: 
-    <select id="tags" class="filters-select button-group" data-filter-group="tag">
+  </div>
+
+  <div class="row">
+
+    <label for="tags"> Tag: </label>
+    <select id="tags" name="tags" class="filters-select button-group" data-filter-group="tag">
       <option value="*">Show all</option>
       <?php foreach(get_tags() as $tag) : ?>
         <option value=".<?php echo $tag->slug; ?>"><?php echo $tag->name ?></option>
       <?php endforeach; ?>
     </select>
-    <div>
-      <label class="screen-reader-text" for="s" style="visibility:hidden;">Search for:</label>
-      <input type="text" value name="s" id="s" class="searchbar quicksearch" placeholder="Search for:" />
-      <input type="submit" class="filters-search" id="searchsubmit" data-filter-group="search" value="Search">
-    </div> 
+
+  </div>
+
+ </div>
+
+    <div class="col-md-6">
+    <div class="row">
+      <label class="screen-reader-text" for="storycentral-search" style="visibility:hidden;">Search for:</label>
+      <input type="text" value name="storycentral-search" id="storycentral-search" class="searchbar quicksearch" placeholder="Search for:" />
+      <input type="submit" class="filters-search" id="storycentral-searchsubmit" data-filter-group="search" value="Search">
+    </div>
+    </div>
   </div>
 
       <div id="archive_section">
       <div class="grid js-isotope isotope">
-           <?php 
+           <?php
            $args = array(
             'posts_per_page'  => -1,
             'orderby'         => 'post_date',
@@ -121,11 +136,11 @@
             'post_status'     => 'publish'
           );
           $posts = get_posts($args);
-          foreach( $posts as $post ) : setup_postdata($post); 
+          foreach( $posts as $post ) : setup_postdata($post);
           $tags = "";
           $slugs = wp_get_post_tags($post->ID, array('fields' => 'slugs'));
           foreach($slugs as $slug) : $tags = $tags . $slug . " "; endforeach;
-          $pillars = wp_get_post_terms($post->ID, 'pillar', array('fields' => 'slugs')); 
+          $pillars = wp_get_post_terms($post->ID, 'pillar', array('fields' => 'slugs'));
           foreach($pillars as $pillar) : $tags = $tags . $pillar . " "; endforeach; ?>
 
                <div class="grid-sizer"></div>
@@ -133,7 +148,7 @@
                    <div class='boundless-image' style='background-image:url("<?php echo get_story_featured_image_url($post->ID) ?>");' ></div>
                       <div class="boundless-text">
                           <h3 class="searchtag"><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h3>
-                          <p class="searchtag"><?php echo get_abstract_text($post->ID); ?></p> 
+                          <p class="searchtag"><?php echo get_abstract_text($post->ID); ?></p>
                           <a class="more" href='<?php the_permalink(); ?>'>More</a>
                    </div>
                </div>
