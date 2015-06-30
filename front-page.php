@@ -35,7 +35,7 @@
   });
 
   // use value of search field to filter
-  $('.filters-search').on( 'click', function() {
+  $('#storycentral-search').on( 'keyup', function() {
     var $this = $(this);
     var search = $('#storycentral-search').val();
     qsRegex = new RegExp( search, 'gi' );
