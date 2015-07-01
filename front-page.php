@@ -9,11 +9,15 @@
   var qsRegex;
   var buttonFilter;
   var filters = {};
+  var counter = 0;
 
   var filterFunction = function() {
       var $this = $(this);
       var searchResult = qsRegex ? $this.text().match( qsRegex ) : true;
       var buttonResult = buttonFilter ? $this.is( buttonFilter ) : true;
+      if (searchResult && buttonResult){
+        counter++;
+      }
       return searchResult && buttonResult;
   }
 
@@ -28,6 +32,7 @@
 
   //run masonry on load
   $(window).load(function() {
+    counter = 0; 
     $('.isotope').isotope({
       itemSelector: '.element-item',
       masonry: {
@@ -37,6 +42,8 @@
   });
 
   $('.filters-select').on( 'change', function() {
+    $('#noresults').css({'visibility': 'hidden'});
+    counter = 0; 
     var $this = $(this);
     var filterGroup = $this.attr('data-filter-group');
     filters[ filterGroup ] = this.value;
@@ -46,10 +53,15 @@
         gutter: 10
       } 
     });
+    if(counter==0){
+      $('#noresults').css({'visibility': 'visible'});
+    }
   });
 
   // use value of search field to filter
   $('#storycentral-search').on( 'keyup', function() {
+    $('#noresults').css({'visibility': 'hidden'});
+    counter = 0;
     var $this = $(this);
     var search = $('#storycentral-search').val();
     qsRegex = new RegExp( search, 'gi' );
@@ -58,6 +70,9 @@
         gutter: 10
       }
     });
+    if(counter==0){
+      $('#noresults').css({'visibility': 'visible'});
+    }
   });
 
 
@@ -159,6 +174,7 @@
 </div>
 
       <div id="archive_section">
+      <div id="noresults" style="visibility:hidden"><h3>No results found</h3></div>
       <div class="grid js-isotope isotope">
       <div class="grid-sizer"></div>
            <?php
