@@ -177,7 +177,7 @@
           foreach($pillars as $pillar) : $tags = $tags . $pillar . " "; endforeach; ?>
 
                <div class="boundless-tile grid-item element-item <?php echo $tags; ?>" >
-                   <div class='boundless-image' style='background-image:url("<?php echo get_story_featured_image_url($post->ID) ?>");' ></div>
+                   <div class='boundless-image' style='background-image:url("<?php echo get_story_featured_image_url($post->ID, false, array(350,350)) ?>");' ></div>
                       <div class="boundless-text">
                           <h3 class="searchtag"><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h3>
                           <p class="searchtag"><?php echo get_abstract_text($post->ID); ?></p>
