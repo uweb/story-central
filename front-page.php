@@ -76,19 +76,19 @@
 </script>
 <!-- uses post to fill in archive page's title/tag line -->
 <?php while( have_posts() ) : the_post(); ?>
+<div id="flex-bg">
+  <div class="img-src orig"></div>
+  <div id="blurred-background" class="img-src blrd"></div>
 
-  <div id="story-bank-info">
+  <div id="story-bank-info" class="container">
     <h1 class="uw-site-title"><?php the_title(); ?></h1>
     <span class="udub-slant"><span></span></span>
     <?php the_content(); ?>
   </div>
-
+</div>
 <?php endwhile; ?>
 
-<div id="flex-bg">
-  <div class="img-src orig"></div>
-  <div id="blurred-background" class="img-src blrd"></div>
-</div>
+
 
 <div id="primary" class="tan-bg">
 
@@ -108,40 +108,55 @@
                 </div></a>
             </div> -->
  <div id="filters" class="row">
- <div class="dropdowns col-md-6">
 
-  <div class="row">
+	<div class="col-md-6">
+		<div class="form-horizontal">
+		  <div class="form-group">
+		      <label for="pillars" class="col-sm-2 control-label">Pillar:</label>
+		      <div class="col-sm-10">
+		        <select id="pillar" name="pillars" class="filters-select button-group form-control input-sm" data-filter-group="pillar">
+		          <option value="*">Show all</option>
+		          <?php foreach(get_pillars() as $pillar) : ?>
+		            <option value=".<?php echo $pillar->slug; ?>"><?php echo $pillar->name ?></option>
+		          <?php endforeach; ?>
+		        </select>
+		      </div>
+		    </div>
+		</div>
+		
+		<div class="form-horizontal">  
+			<div class="form-group">
+		      <label for="tags" class="col-sm-2 control-label"> Tag:</label>
+		      <div class="col-sm-10">
+		        <select id="tags" name="tags" class="filters-select button-group form-control input-sm" data-filter-group="tag">
+		          <option value="*">Show all</option>
+		          <?php foreach(get_tags() as $tag) : ?>
+		            <option value=".<?php echo $tag->slug; ?>"><?php echo $tag->name ?></option>
+		          <?php endforeach; ?>
+		        </select>
+		      </div>
+		    </div>
+		</div>
+	 </div>
 
-    <label for="pillars">Pillar:</label>
-    <select id="pillar" name="pillars" class="filters-select button-group" data-filter-group="pillar">
-      <option value="*">Show all</option>
-      <?php foreach(get_pillars() as $pillar) : ?>
-        <option value=".<?php echo $pillar->slug; ?>"><?php echo $pillar->name ?></option>
-      <?php endforeach; ?>
-    </select>
-  </div>
+    <div class="search-field col-md-4 col-md-offset-1">
 
-  <div class="row">
+			<form role="search" method="get" id="searchform" class="searchform" action="http://128.208.132.220/cms/story-central/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="storycentral-search" id="storycentral-search"  placeholder="Search for:" autocomplete="off" class="searchbar quicksearch">
+					<input id="searchsubmit" value="Search">
+				</div>
+			</form>
 
-    <label for="tags"> Tag: </label>
-    <select id="tags" name="tags" class="filters-select button-group" data-filter-group="tag">
-      <option value="*">Show all</option>
-      <?php foreach(get_tags() as $tag) : ?>
-        <option value=".<?php echo $tag->slug; ?>"><?php echo $tag->name ?></option>
-      <?php endforeach; ?>
-    </select>
-
-  </div>
-
- </div>
-
-    <div class="col-md-6">
-    <div class="row">
-      <label class="screen-reader-text" for="storycentral-search" style="visibility:hidden;">Search for:</label>
-      <input type="text" value name="storycentral-search" id="storycentral-search" class="searchbar quicksearch" placeholder="Search for:" />
     </div>
-    </div>
-  </div>
+
+
+
+
+</div>
+
+</div>
 
       <div id="archive_section">
       <div class="grid js-isotope isotope">
@@ -176,16 +191,6 @@
 
   </div>
   </div> <!-- main -->
-
-<div class="col-md-4 uw-sidebar">
-        <div id="secondary" class="right-bar" role="complementary">
-          <div class="stripe-top"></div><div class="stripe-bottom"></div>
-             <div id="sidebar">
-              <?php if (is_active_sidebar('homepage-sidebar') && is_front_page() ||
-                        is_active_sidebar('homepage-sidebar') && is_home() ) : dynamic_sidebar('homepage-sidebar'); else: dynamic_sidebar('sidebar'); endif; ?>
-             </div><!-- #sidebar -->
-        </div><!-- #secondary -->
-</div>
 
       </div><!-- .show-grid -->
     </div><!-- #content -->

@@ -12,14 +12,11 @@ Version: 1.0
   border-top-color: #4b2e83 !important;
 }
 #flex-bg {
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 630px;
+  position: relative;
+  padding: 90px 0;
 }
-#flex-bg div {
+#flex-bg div.orig,
+#flex-bg div.blrd {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -28,7 +25,7 @@ Version: 1.0
   top: 0;
   right: 0;
   left: 0;
-  height: 630px;
+  bottom: 0;
 }
 #flex-bg .orig {
   background-image: url('img/bg.jpg');
@@ -110,9 +107,9 @@ Version: 1.0
   margin: 40px 0 0 0;
 }
 #story-bank-info {
-  width: 1070px;
-  margin: 60px auto 50px;
+  margin: 0 auto;
   overflow: hidden;
+  padding-left: 50px;
   text-align: left;
   position: relative;
   z-index: 1;
@@ -326,6 +323,59 @@ div.story-section {
   height: 10px;
   background: url('img/lil-arrow.png') no-repeat;
 }
+.search-field {
+  padding-top: 15px;
+  position: relative;
+}
+.search-field:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -40px;
+  top: 0;
+  width: 1px;
+  height: 90px;
+  background-color: #adadad;
+  border-bottom: 3px solid #DFDFDF;
+}
+.tan-bg {
+  position: relative;
+}
+.tan-bg:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -3px;
+  height: 220px;
+  background-color: #EEEADF;
+}
+.uw-body.container.boundless-archive {
+  background-color: transparent;
+}
+#searchform #storycentral-search {
+  width: 100%;
+  padding: 14px 0 13px 25px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  outline: none;
+  background-color: white;
+}
+#pillar,
+#tags {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: none;
+  outline: 1px solid #ADADAD;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 #feed h2 {
   clear: both;
   padding: 15px 0 20px;
@@ -348,6 +398,45 @@ div.story-section {
   height: 1px;
   position: absolute;
   top: 50%;
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  #story-bank-info {
+    margin: 10px 80px 50px;
+  }
+  .tan-bg:before,
+  .search-field:before {
+    display: none;
+  }
+}
+@media only screen and (max-width: 767px) {
+  #story-bank-info {
+    padding: 0 40px;
+    margin: 20px 0 0;
+    width: auto;
+  }
+  #story-bank-info h1 {
+    font-size: 30px;
+  }
+  #story-bank-info p {
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  #flex-bg {
+    padding: 20px 0;
+  }
+  .uw-content {
+    padding: 0;
+  }
+  .tan-bg:before,
+  .search-field:before {
+    display: none;
+  }
+  .boundless-tile {
+    position: static !important;
+    width: 90% !important;
+    margin: 0 auto 20px;
+  }
 }
 .grid-sizer {
   width: 31%;

@@ -1,13 +1,10 @@
 // Custom Header
 
 #flex-bg {
-	position: absolute;
-	z-index: 0;
-	top: 0;
- 	right: 0;
- 	left: 0;
- 	height: 630px;
-	div {
+ 	position: relative;
+    padding: 90px 0;
+	div.orig,
+	div.blrd {
  		-webkit-background-size: cover;
  		-moz-background-size: cover;
  		-o-background-size: cover;
@@ -16,7 +13,7 @@
  		top: 0;
  		right: 0;
  		left: 0;
- 		height: 630px;
+ 		bottom: 0;
  		
 	}
 	.orig {
@@ -111,9 +108,9 @@
 }
 
 #story-bank-info {
-	width: 1070px;
-	margin: 60px auto 50px;
+	margin: 0 auto;
 	overflow: hidden;
+	padding-left: 50px;
 	text-align: left;
 	position: relative;
 	z-index: 1;
