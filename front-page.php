@@ -156,7 +156,7 @@
 
     <div class="search-field col-md-4 col-md-offset-1">
 
-			<form role="search" method="get" id="searchform" class="searchform" action="http://128.208.132.220/cms/story-central/">
+			<form role="search" method="get" id="searchform" class="searchform" action="">
 				<div>
 					<label class="screen-reader-text" for="s">Search for:</label>
 					<input type="text" value="" name="storycentral-search" id="storycentral-search"  placeholder="Search for:" autocomplete="off" class="searchbar quicksearch">

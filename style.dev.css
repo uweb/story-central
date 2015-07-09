@@ -353,6 +353,8 @@ div.story-section {
 }
 .uw-body.container.boundless-archive {
   background-color: transparent;
+  margin-bottom: 0;
+  padding-bottom: 80px;
 }
 #searchform #storycentral-search {
   width: 100%;
