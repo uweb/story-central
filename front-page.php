@@ -10,15 +10,20 @@
   var buttonFilter;
   var filters = {};
   var counter = 0;
+  var searchTag;
 
   var filterFunction = function() {
       var $this = $(this);
+      console.log($this);
+      console.log(searchTag);
       var searchResult = qsRegex ? $this.text().match( qsRegex ) : true;
       var buttonResult = buttonFilter ? $this.is( buttonFilter ) : true;
-      if (searchResult && buttonResult){
+      var searchTagResult = $this.hasClass(searchTag);
+      console.log(searchTagResult);
+      if ((searchResult && buttonResult) || (searchTagResult)){
         counter++;
       }
-      return searchResult && buttonResult;
+      return ((searchResult && buttonResult) || (searchTagResult));
   }
 
 
@@ -64,6 +69,7 @@
     counter = 0;
     var $this = $(this);
     var search = $('#storycentral-search').val();
+    searchTag = search.replace(/ /gi, '-');
     qsRegex = new RegExp( search, 'gi' );
     $container.isotope({ filter : filterFunction,
       masonry: {
@@ -76,15 +82,14 @@
   });
 
 
-
   function concatValues( obj ) {
-  var value = '';
-  for ( var prop in obj ) {
-    if(obj[prop] != "*"){
-      value += obj[ prop ];
+    var value = '';
+    for ( var prop in obj ) {
+      if(obj[prop] != "*"){
+        value += obj[ prop ];
+      }
     }
-  }
-  return value;
+    return value;
   }
 });
 
