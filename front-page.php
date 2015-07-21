@@ -14,11 +14,15 @@
 
   var filterFunction = function() {
       var $this = $(this);
-      console.log($this);
-      console.log(searchTag);
       var searchResult = qsRegex ? $this.text().match( qsRegex ) : true;
       var buttonResult = buttonFilter ? $this.is( buttonFilter ) : true;
-      var searchTagResult = $this.hasClass(searchTag);
+
+      var searchTagResult = false;
+      var classes = $this.context.className.split(" ");
+      for (var i = 3; i < classes.length; i++){ //starts at 4th bc 1st 3 are for masonry
+        console.log(classes[i])
+        if(classes[i].substr(0, searchTag.length) == searchTag) searchTagResult=true;  
+      }
       console.log(searchTagResult);
       if ((searchResult && buttonResult) || (searchTagResult)){
         counter++;
