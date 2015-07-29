@@ -13,6 +13,8 @@
       <?php while (have_posts()) : the_post(); ?>
 
 				<h1 class="entry-title"><?php the_title() ?></h1>
+				
+				<?php the_story_pillar( get_the_ID() ); ?>
 
                 <?php the_featured_image_section( get_the_ID() ); ?>
 
@@ -22,7 +24,7 @@
     			<?php the_content(); ?>
         </div>
 
-        <?php the_source_link_section( get_the_ID() ); ?>
+        		<?php the_source_link_section( get_the_ID() ); ?>
 
 				<?php the_media_gallery_section( get_the_ID() ); ?>
 
@@ -35,6 +37,8 @@
 				<?php the_external_links_section( get_the_ID() ); ?>
 
 				<?php the_original_authors_section( get_the_ID() ); ?>
+
+				<?php the_story_tags( get_the_ID() ); ?>
 
       <?php endwhile; ?>
 

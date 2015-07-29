@@ -277,12 +277,49 @@ function get_media_gallery_featured_image_url( $post_id, $backup=false, $size='t
 }
 
 function get_story_featured_image_url( $post_id, $backup=false, $size ='thumbnail' ) {
-
+    $img_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ) , $size );
     $url =  ( has_post_thumbnail( $post_id ) ) ?
-              reset( wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ) , $size ) ) :
+              reset( $img_src ) :
               get_media_gallery_featured_image_url( $post_id, $backup, $size );
 
     return $url;
+}
+
+function the_story_pillar( $post_id ){
+    echo get_story_pillar( $post_id );
+}
+
+function get_story_pillar( $post_id ){
+    $pillars = wp_get_post_terms($post_id, 'pillar', array('fields' => 'names'));
+    $list = '';
+    for($i = 0; $i < count($pillars); $i++) {
+      if ($i == (count($pillars) - 1)){
+        $list .= $pillars[$i];
+      } else {
+        $list .= $pillars[$i] . " | ";
+      }
+    }
+    return "<h5 class='story-pillar'>" . $list . "</h5>"; 
+}
+
+function the_story_tags( $post_id ){
+    echo get_story_tags( $post_id );
+}
+
+function get_story_tags( $post_id ){
+    $tags = wp_get_post_tags($post_id, array('fields' => 'names'));
+    $list = '';
+    for($i = 0; $i < count($tags); $i++) {
+      if ($i == (count($tags) - 1)){
+        $list .= $tags[$i];
+      } else {
+        $list .= $tags[$i] . " | ";
+      }
+    }
+    return "<div class='story-section'> <div class='widget'>" . 
+          "<h3 class='widgettitle'><span>Tags</span></h3>" . 
+          "<p>" . $list . "</p>" . 
+          "</div> </div>"; 
 }
 
 // gets cateogry posts
