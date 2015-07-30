@@ -237,7 +237,10 @@ div.story-section {
   box-shadow: none;
 }
 .uw-content {
-  padding: 30px 20px 0 50px;
+  padding: 20px 20px 80px 50px;
+}
+.uw-content h2 {
+  font-weight: 900;
 }
 .udub-slant span {
   background-color: #B7A57A;
@@ -347,7 +350,7 @@ div.story-section {
   position: absolute;
   left: 0;
   right: 0;
-  top: -3px;
+  top: 287px;
   height: 220px;
   background-color: #EEEADF;
 }
