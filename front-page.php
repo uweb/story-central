@@ -14,7 +14,7 @@
 
   var filterFunction = function() {
       var $this = $(this);
-      var searchResult = qsRegex ? $this.text().match( qsRegex ) : true;
+      var searchResult = qsRegex ? $this.context.textContent.match( qsRegex ) : true;
       var buttonResult = buttonFilter ? $this.is( buttonFilter ) : true;
       var searchTagResult = false;
       if(searchTag) {
@@ -240,6 +240,7 @@
                       <div class="boundless-text">
                           <h3 class="searchtag"><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h3>
                           <p class="searchtag"><?php echo get_abstract_text($post->ID); ?></p>
+                          <div class="searchbody" style="display:none"><?php echo the_content(); ?></div>
                           <a class="more" href='<?php the_permalink(); ?>'>More</a>
                    </div>
                </div>
