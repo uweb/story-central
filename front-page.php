@@ -120,41 +120,6 @@
 
   <div class="col-md-12 uw-content" role="main">
   <div id='main_content' class="uw-body-copy">
-    <div id='welcome-blurb' class="col-md-6">
-      <h2 class='widgettitle'>Welcome to Story Central!</h2>
-      <div class="textwidget">
-        Organized by brand pillar, this library enables you to search for brand-defining content across the UW. Browse by pillar or enter key terms into the search bar above. Use the stories featured here for reference or inspiration for future boundless content.
-      </div>
-    </div>
-
-    <div id="contact-meg" class="col-md-3">
-      <h2 class="widgettitle">Questions?</h2>
-      <div class="textwidget">
-        Contact Meg Cressey <br />
-        mcressey@uw.edu <br />
-        206.221.1713
-      </div>
-    </div>
-
-    <div>
-      <div id='current-total' class="col-md-3">
-        <h2 class="widgettitle">Current Total</h2>
-        <div class="textwidget">
-          42 stories uploaded
-
-          <br />
-          <br />
-
-          <a class="uw-btn btn-external btn-gold" href="https://catalyst.uw.edu/webq/survey/jswen/259668" style="margin:0">
-          Pitch a story
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  <div class="col-md-12 uw-content" role="main">
-  <div id='main_content' class="uw-body-copy">
         <!-- Story Cental - Spotlight Story -->
           <!--  <?php $promoted //= get_promoted_story(); ?>
             <div class='promoted-story-tile'>
@@ -182,19 +147,19 @@
 		    </div>
 		</div>
 		
-		<!-- <div class="form-horizontal">  
+		<div class="form-horizontal">  
 			<div class="form-group">
 		      <label for="tags" class="col-sm-2 control-label"> Tag:</label>
 		      <div class="col-sm-10">
 		        <select id="tags" name="tags" class="filters-select button-group form-control input-sm" data-filter-group="tag">
 		          <option value="*">Show all</option>
-		          <?php //foreach(get_tags() as $tag) : ?>
-		            <option value=".<?php// echo $tag->slug; ?>"><?php// echo $tag->name ?></option>
-		          <?php //endforeach; ?>
+		          <?php foreach(get_tags() as $tag) : ?>
+		            <option value=".<?php echo $tag->slug; ?>"><?php echo $tag->name ?></option>
+		          <?php endforeach; ?>
 		        </select>
 		      </div>
 		    </div>
-		</div> -->
+		</div>
 	 </div>
 
     <div class="search-field col-md-4 col-md-offset-1">
