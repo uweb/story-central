@@ -37,9 +37,10 @@
       gutter: 10
     }
   });
+  $container.isotope();
 
   //run masonry on load
-  $(window).load(function() {
+  $( window ).load(function() {
     counter = 0; 
     $('.isotope').isotope({
       itemSelector: '.element-item',
@@ -82,6 +83,26 @@
     if(counter==0){
       $('#noresults').css({'visibility': 'visible'});
     }
+  });
+
+  $('.load-more-stories a').on('click' , function(e){
+    e.preventDefault();
+    this.innerHTML = "Loading";
+    $this = $( this );
+    $.ajax({
+      url: e.target.href,
+      success: function(data) {
+        $container.isotope( 'remove', $('.grid-item') );
+        $container.isotope( 'insert', $(data) );
+        $this.addClass('hide');
+      }
+      // error: function (textStatus, errorThrown) {
+      //     console.log(errorThrown);
+      //     console.log(textStatus);
+      //     this.innerHTML = "Error";
+      // }
+    });
+
   });
 
 
@@ -183,11 +204,11 @@
 
       <div id="archive_section">
       <div id="noresults" style="visibility:hidden"><h3>No results found</h3></div>
-      <div class="grid js-isotope isotope">
-      <div class="grid-sizer"></div>
+      <div id="grid-isotope" class="grid js-isotope isotope">
+      <div id="grid-sizer" class="grid-sizer"></div>
            <?php
            $args = array(
-            'posts_per_page'  => -1,
+            'posts_per_page'  => 25,
             'orderby'         => 'post_date',
             'post_type'       => 'story',
             'post_status'     => 'publish'
@@ -214,11 +235,15 @@
       </div>
       </div>
 
+      <div class="load-more-stories"><a class="uw-btn" href="ajax-all-stories">Load more</a></div>
+
   </div>
   </div> <!-- main -->
 
       </div><!-- .show-grid -->
     </div><!-- #content -->
   </div><!-- #primary -->
+
+  
 
 <?php get_footer(); ?>

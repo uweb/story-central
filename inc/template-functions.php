@@ -1,5 +1,26 @@
 <?php
 
+function get_stories()
+{
+  $args = array(
+            'posts_per_page'  => -1,
+            'orderby'         => 'post_date',
+            'post_type'       => 'story',
+            'post_status'     => 'publish'
+          );
+  return get_posts($args);
+}
+
+function get_post_tags($id)
+{
+  return wp_get_post_tags($id, array('fields' => 'slugs'));
+}
+
+function get_post_terms($id)
+{
+  return wp_get_post_terms($id, 'pillar', array('fields' => 'slugs'));
+}
+
 function get_pillars()
 {
   return get_terms('pillar', 'orderby=none&hide_empty');
