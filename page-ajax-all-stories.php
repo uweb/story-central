@@ -1,7 +1,7 @@
 <div id="grid-sizer" class="grid-sizer"></div>
 <?php
   $args = array(
-    'posts_per_page'  => -1,
+    'posts_per_page'  => 100,
     'orderby'         => 'post_date',
     'post_type'       => 'story',
     'post_status'     => 'publish'
@@ -25,4 +25,4 @@
      </div>
 
 <?php endforeach; ?>
-      
+
