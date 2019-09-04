@@ -206,36 +206,33 @@
       <div id="noresults" style="visibility:hidden"><h3>No results found</h3></div>
       <div id="grid-isotope" class="grid js-isotope isotope">
       <div id="grid-sizer" class="grid-sizer"></div>
-           <?php
-           $args = array(
-            'posts_per_page'  => 25,
-            'orderby'         => 'post_date',
-            'post_type'       => 'story',
-            'post_status'     => 'publish'
-          );
-          $posts = get_posts($args);
-          foreach( $posts as $post ) : setup_postdata($post);
+      <?php
+
+        $url = 'http://cms.local/api/story_central_posts/get_all_story_central_posts/';
+        $json_data = file_get_contents($url);
+        $data = (array)json_decode($json_data);
+        $posts = $data['posts'];
+
+        foreach( $posts as $post ) : setup_postdata($post);
           $tags = "";
-          $slugs = wp_get_post_tags($post->ID, array('fields' => 'slugs'));
+          $slugs = $post->tags;
           foreach($slugs as $slug) : $tags = $tags . $slug . " "; endforeach;
-          $pillars = wp_get_post_terms($post->ID, 'pillar', array('fields' => 'slugs'));
+          $pillars = $post->pillars;
           foreach($pillars as $pillar) : $tags = $tags . $pillar . " "; endforeach; ?>
 
-               <div class="boundless-tile grid-item element-item <?php echo $tags; ?>" >
-                   <div class='boundless-image' style='background-image:url("<?php echo get_story_featured_image_url($post->ID, false, array(350,350)) ?>");' ></div>
-                      <div class="boundless-text">
-                          <h3 class="searchtag"><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h3>
-                          <p class="searchtag"><?php echo get_abstract_text($post->ID); ?></p>
-                          <div class="searchbody" style="display:none"><?php echo the_content(); ?></div>
-                          <a class="more" href='<?php the_permalink(); ?>'>More</a>
-                   </div>
-               </div>
+          <div class="boundless-tile grid-item element-item <?php echo $tags; ?>" >
+              <div class='boundless-image' style='background-image:url("<?php echo $post->image; ?>");' ></div>
+                  <div class="boundless-text">
+                      <h3 class="searchtag"><a href='<?php echo $post->link ?>'><?php echo $post->title; ?></a></h3>
+                      <p class="searchtag"><?php echo $post->excerpt; ?></p>
+                      <div class="searchbody" style="display:none"><?php echo $post->content; ?></div>
+                      <a class="more" href='<?php echo $post->link; ?>'>More</a>
+              </div>
+          </div>
 
-           <?php endforeach; ?>
+      <?php endforeach; ?>
       </div>
       </div>
-
-      <div class="load-more-stories"><a class="uw-btn" href="ajax-all-stories">Load more</a></div>
 
   </div>
   </div> <!-- main -->
