@@ -30,8 +30,8 @@ class json_api_story_central_posts_controller
         $custom_fields = $post->custom_fields;
         $excerpt = $custom_fields->abstract;
 
-        $img_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ) , array(350,350) );
-        $img_url = ( has_post_thumbnail( $post->ID ) ) ? reset( $img_src ) : '';
+        $img_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->id ) , array(350,350) );
+        $img_url = ( has_post_thumbnail( $post->id ) ) ? reset( $img_src ) : '';
 
         $tag_slugs = array();
         $pillar_slugs = array();
