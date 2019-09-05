@@ -22,7 +22,6 @@ new UW_Story_Central;
 add_action('save_post', 'update_cached_story_data');
 function update_cached_story_data() {
     if (get_post_type($post) == "story") {
-        global $json_api;
 
         $posts = get_posts(array(
             'posts_per_page'  => -1,
