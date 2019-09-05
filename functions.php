@@ -35,6 +35,5 @@ function bust_story_central_transient() {
 	global $post;
     if (get_post_type($post) == "story") {
         delete_transient('get_all_story_central_posts');
-        wp_schedule_single_event( time(), 'story_updated' );
 	}
 }
