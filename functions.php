@@ -32,8 +32,8 @@ add_filter('json_api_story_central_posts_controller_path', 'set_story_central_po
 
 add_action( 'save_post', 'bust_story_central_transient');
 function bust_story_central_transient() {
-	global $post;
+    global $post;
     if (get_post_type($post) == "story") {
         delete_transient('get_all_story_central_posts');
-	}
+    }
 }
