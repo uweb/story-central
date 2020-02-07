@@ -20,7 +20,7 @@
       if(searchTag) {
         var classes = $this.context.className.split(" ");
         for (var i = 3; i < classes.length; i++){ //starts at 4th bc 1st 3 are for masonry
-           if(classes[i].substr(0, searchTag.length) == searchTag) searchTagResult=true;  
+           if(classes[i].substr(0, searchTag.length) == searchTag) searchTagResult=true;
          }
       }
        if ((searchResult && buttonResult) || (searchTagResult)){
@@ -41,7 +41,7 @@
 
   //run masonry on load
   $( window ).load(function() {
-    counter = 0; 
+    counter = 0;
     $('.isotope').isotope({
       itemSelector: '.element-item',
       masonry: {
@@ -52,7 +52,7 @@
 
   $('.filters-select').on( 'change', function() {
     $('#noresults').css({'visibility': 'hidden'});
-    counter = 0; 
+    counter = 0;
     var $this = $(this);
     var filterGroup = $this.attr('data-filter-group');
     filters[ filterGroup ] = this.value;
@@ -60,7 +60,7 @@
     $container.isotope({ filter : filterFunction,
       masonry: {
         gutter: 10
-      } 
+      }
     });
     if(counter==0){
       $('#noresults').css({'visibility': 'visible'});
@@ -167,8 +167,8 @@
 		      </div>
 		    </div>
 		</div>
-		
-		<div class="form-horizontal">  
+
+		<div class="form-horizontal">
 			<div class="form-group">
 		      <label for="tags" class="col-sm-2 control-label"> Tag:</label>
 		      <div class="col-sm-10">
@@ -244,6 +244,6 @@
     </div><!-- #content -->
   </div><!-- #primary -->
 
-  
+
 
 <?php get_footer(); ?>
