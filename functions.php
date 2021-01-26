@@ -18,3 +18,22 @@ class UW_Story_Central
 }
 
 new UW_Story_Central;
+
+function add_story_central_posts_controller($controllers) {
+    $controllers[] = 'story_central_posts';
+    return $controllers;
+}
+add_filter('json_api_controllers', 'add_story_central_posts_controller');
+
+function set_story_central_posts_controller_path() {
+    return dirname(__FILE__) . "/inc/story-central-json.php";
+}
+add_filter('json_api_story_central_posts_controller_path', 'set_story_central_posts_controller_path');
+
+add_action( 'save_post', 'bust_story_central_transient');
+function bust_story_central_transient() {
+    global $post;
+    if (get_post_type($post) == "story") {
+        delete_transient('get_all_story_central_posts');
+    }
+}
